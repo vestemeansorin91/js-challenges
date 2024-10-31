@@ -15,6 +15,8 @@ Arrays https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_
 - yourArray.every()
 - yourArray.some()
 - yourArray.sort()
+- yourArray.join()
+- yourArray.split()
 
 Objects https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object 
 - Object.keys(yourObject)
