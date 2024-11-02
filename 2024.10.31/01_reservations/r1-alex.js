@@ -1,14 +1,15 @@
-let id = 0;
+const reservations = [];
+const id = reservations.length + 1;
+
 function createReservation(date, startHour, endHour, range) {
-  id++;
-  return {
-    id: id,
-    date: date,
+  reservations.push({
+    id,
+    date,
+    startHour,
+    endHour,
+    range,
     categories: [],
-    startHour: startHour,
-    endHour: endHour,
-    range: range,
-  };
+  });
+  return reservations;
 }
-const reservation = createReservation("2024-10-31", 6, 9, 15);
-console.log(reservation);
+createReservation("2024-10-31", 6, 9, 15);
