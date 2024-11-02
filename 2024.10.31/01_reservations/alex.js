@@ -32,3 +32,16 @@ function updateReservationDate(id, updateReservation) {
   return reservation;
 }
 let updatedReserv = updateReservationDate(1, { startHour: 2, endHour: 10 });
+
+function deleteReservation(id) {
+  const reservationID = reservations.findIndex((res) => {
+    return res.id === id;
+  });
+  if (reservationID === -1) {
+    return;
+  }
+
+  return reservations.splice(reservationID, 1);
+}
+
+const deletedReservation = deleteReservation(1);
