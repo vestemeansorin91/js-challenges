@@ -1,7 +1,11 @@
 const reservations = [];
-const id = reservations.length + 1;
+
+createReservation("2024-03-10", 10, 20, 30);
+createCategory(1, "Fotbal");
+console.log(reservations[0].categories);
 
 function createReservation(date, startHour, endHour, range) {
+  const id = reservations.length + 1;
   reservations.push({
     id,
     date,
@@ -10,9 +14,7 @@ function createReservation(date, startHour, endHour, range) {
     range,
     categories: [],
   });
-  return reservations;
 }
-createReservation("2024-10-31", 6, 9, 15);
 
 function updateReservationDate(id, updateReservation) {
   let reservation = reservations.find((res) => {
@@ -28,10 +30,7 @@ function updateReservationDate(id, updateReservation) {
       reservation[key] = updateReservation[key];
     }
   }
-
-  return reservation;
 }
-let updatedReserv = updateReservationDate(1, { startHour: 2, endHour: 10 });
 
 function deleteReservation(id) {
   const reservationID = reservations.findIndex((res) => {
@@ -44,22 +43,18 @@ function deleteReservation(id) {
   return reservations.splice(reservationID, 1);
 }
 
-const deletedReservation = deleteReservation(1);
-
 function createCategory(reservationId, title) {
-  const categoryId = reservation.categories.length + 1;
   const reservation = reservations.find((res) => {
     return res.id === reservationId;
   });
   if (!reservation) {
     return null;
   }
+  const categoryId = reservation.categories.length + 1;
 
-  let arr = reservation.categories;
-  arr.push({
+  reservation.categories.push({
     categoryId,
     title,
     fields: [],
   });
-  return arr;
 }
