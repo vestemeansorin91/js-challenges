@@ -45,3 +45,21 @@ function deleteReservation(id) {
 }
 
 const deletedReservation = deleteReservation(1);
+
+function createCategory(reservationId, title) {
+  const categoryId = reservation.categories.length + 1;
+  const reservation = reservations.find((res) => {
+    return res.id === reservationId;
+  });
+  if (!reservation) {
+    return null;
+  }
+
+  let arr = reservation.categories;
+  arr.push({
+    categoryId,
+    title,
+    fields: [],
+  });
+  return arr;
+}
