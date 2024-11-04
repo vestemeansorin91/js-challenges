@@ -66,7 +66,7 @@ function updateCategory(reservationId, categoryId, title) {
 }
 
 function deleteCategory(reservationId, categoryId) {
-  let reservation = x.find((res) => res.id === reservationId);
+  let reservation = reservations.find((res) => res.id === reservationId);
   if (!reservation) {
     return;
   }
