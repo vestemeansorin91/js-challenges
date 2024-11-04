@@ -233,3 +233,58 @@ Example **updateTimeField**(1, 1, 1, {"08:00", 30})
       "range": 15
 }
 ```
+#### *(update 2024.11.01)*
+
+## Method SO: 
+- I want to have a method that returns a boolean 
+
+### INPUT
+Skeleton **isSlotOccupied**(reservationId, categoryId, fieldId, time)
+
+Example **isSlotOccupied**(1, 1, 1, "08:00") 
+
+### OUTPUT
+```
+true
+```
+
+Example **isSlotOccupied**(1, 1, 1, "22:00") 
+
+### OUTPUT
+```
+false
+```
+---
+## Method CT: 
+Bring in this file, the method that you've made to generate the timeSlots from startHour, endHour, range.
+
+Add in this file at top a `const timeSlots` from `9` to `22`, with a range of `30`.
+
+We can know the current time. I want to take the current hour and the minutes and to compare it to timeSlot.
+
+If we have the time given `9` and `40`,
+this value in our case is between `9:30` and `10:00`,
+
+So the match should be on `"9:30"`, should return `true`
+
+---- 
+Another example if the given time is `23` and `52`.
+in our case the value is between `"23:30"` and `"24:00"`, but our endHour is `"22:00"` and is out of the range, should return `false`
+
+
+### INPUT
+Skeleton **currentTimeSlot**(timeSlots, { hour, minutes })
+
+Example **currentTimeSlot**(["09:00", "09:30", ... ,"22:00"], { hour: 9, minutes: 40});
+
+### OUTPUT
+```
+true
+```
+
+Example **currentTimeSlot**(["09:00", "09:30", ... ,"22:00"], { hour: 23, minutes: 52});
+### OUTPUT
+```
+false
+```
+---
