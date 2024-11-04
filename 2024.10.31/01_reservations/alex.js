@@ -56,11 +56,26 @@ function createCategory(reservationId, title) {
 }
 
 function updateCategory(reservationId, categoryId, title) {
-  let reservation = x.find((res) => res.id === reservationId);
+  let reservation = reservations.find((res) => res.id === reservationId);
   if (!reservation) {
     return;
   }
 
   let category = reservation.category.find((cat) => cat.id === categoryId);
   category.sport = title;
+}
+
+function deleteCategory(reservationId, categoryId) {
+  let reservation = x.find((res) => res.id === reservationId);
+  if (!reservation) {
+    return;
+  }
+
+  let categoryIndex = reservation.category.findIndex(
+    (cat) => cat.id === categoryId
+  );
+  if (categoryIndex === -1) {
+    return;
+  }
+  reservation.category.splice(categoryIndex, 1);
 }
