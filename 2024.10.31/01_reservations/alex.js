@@ -1,9 +1,5 @@
 const reservations = [];
 
-createReservation("2024-03-10", 10, 20, 30);
-createCategory(1, "Fotbal");
-console.log(reservations[0].categories);
-
 function createReservation(date, startHour, endHour, range) {
   const id = reservations.length + 1;
   reservations.push({
@@ -57,4 +53,14 @@ function createCategory(reservationId, title) {
     title,
     fields: [],
   });
+}
+
+function updateCategory(reservationId, categoryId, title) {
+  let reservation = x.find((res) => res.id === reservationId);
+  if (!reservation) {
+    return;
+  }
+
+  let category = reservation.category.find((cat) => cat.id === categoryId);
+  category.sport = title;
 }
