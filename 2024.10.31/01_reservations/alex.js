@@ -1,7 +1,7 @@
 const reservations = [];
-const id = reservations.length + 1;
 
 function createReservation(date, startHour, endHour, range) {
+  const id = reservations.length + 1;
   reservations.push({
     id,
     date,
@@ -10,9 +10,7 @@ function createReservation(date, startHour, endHour, range) {
     range,
     categories: [],
   });
-  return reservations;
 }
-createReservation("2024-10-31", 6, 9, 15);
 
 function updateReservationDate(id, updateReservation) {
   let reservation = reservations.find((res) => {
@@ -28,10 +26,7 @@ function updateReservationDate(id, updateReservation) {
       reservation[key] = updateReservation[key];
     }
   }
-
-  return reservation;
 }
-let updatedReserv = updateReservationDate(1, { startHour: 2, endHour: 10 });
 
 function deleteReservation(id) {
   const reservationID = reservations.findIndex((res) => {
@@ -44,22 +39,47 @@ function deleteReservation(id) {
   return reservations.splice(reservationID, 1);
 }
 
-const deletedReservation = deleteReservation(1);
-
 function createCategory(reservationId, title) {
-  const categoryId = reservation.categories.length + 1;
   const reservation = reservations.find((res) => {
     return res.id === reservationId;
   });
   if (!reservation) {
     return null;
   }
+  const categoryId = reservation.categories.length + 1;
 
-  let arr = reservation.categories;
-  arr.push({
+  reservation.categories.push({
     categoryId,
     title,
     fields: [],
   });
-  return arr;
+}
+
+function updateCategory(reservationId, categoryId, title) {
+  let reservation = reservations.find((res) => res.id === reservationId);
+  if (!reservation) {
+    return;
+  }
+
+  let category = reservation.category.find((cat) => cat.id === categoryId);
+  if (!reservation) {
+    return;
+  }
+
+  category.sport = title;
+}
+
+function deleteCategory(reservationId, categoryId) {
+  let reservation = reservations.find((res) => res.id === reservationId);
+  if (!reservation) {
+    return;
+  }
+
+  let categoryIndex = reservation.category.findIndex(
+    (cat) => cat.id === categoryId
+  );
+  if (categoryIndex === -1) {
+    return;
+  }
+  reservation.category.splice(categoryIndex, 1);
 }
