@@ -62,6 +62,10 @@ function updateCategory(reservationId, categoryId, title) {
   }
 
   let category = reservation.category.find((cat) => cat.id === categoryId);
+  if (!reservation) {
+    return;
+  }
+
   category.sport = title;
 }
 
