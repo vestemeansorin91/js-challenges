@@ -1,0 +1,101 @@
+{
+  "cinemas": [
+    {
+      "cinemaId": 1,
+      "name": "Cineplex 21",
+      "location": "Centru",
+      "screens": ["IMAX", "Standard"],
+      "facilities": ["parking", "snacks", "glassesRental3D"],
+      "noOfSeats": 50,
+      "seatConfiguration": {
+        "A": 10,
+        "B": 15,
+        "C": 15,
+        "D": 10
+      },
+      "occupiedSeats": ["A2", "A3", "B5", "C7", "D1"]
+    },
+    {
+      "cinemaId": 2,
+      "name": "Galaxy Cinemas",
+      "location": "Vest",
+      "screens": ["3D", "Standard"],
+      "contact": {
+        "phone": "987-654-3210",
+        "email": "suport@galaxycinemas.com"
+      },
+      "facilities": ["loungeVip", "arcade", "parking"],
+      "noOfSeats": 40,
+      "seatConfiguration": {
+        "A": 10,
+        "B": 10,
+        "C": 10,
+        "D": 10
+      },
+      "occupiedSeats": ["A1", "B2", "C5", "D3", "D4"]
+    },
+    {
+      "cinemaId": 3,
+      "name": "Cinema City Mall",
+      "location": "Est",
+      "screens": ["Standard", "4DX"],
+      "facilities": ["snacks", "parking", "loungeVip"],
+      "noOfSeats": 60,
+      "seatConfiguration": {
+        "A": 15,
+        "B": 15,
+        "C": 15,
+        "D": 15
+      },
+      "occupiedSeats": ["A1", "A5", "B10", "C3", "D7"]
+    },
+    {
+      "cinemaId": 4,
+      "name": "Cinema Art Palace",
+      "location": "Sud",
+      "screens": ["IMAX", "3D", "Standard"],
+      "contact": {
+        "phone": "456-123-7890",
+        "email": "info@cinemaartpalace.ro"
+      },
+      "facilities": ["arcade", "parking", "loungeVip"],
+      "noOfSeats": 70,
+      "seatConfiguration": {
+        "A": 20,
+        "B": 15,
+        "C": 20,
+        "D": 15
+      },
+      "occupiedSeats": ["A2", "A4", "B8", "C6", "D10", "D12"]
+    },
+    {
+      "cinemaId": 5,
+      "name": "Cinematograful National",
+      "location": "Nord",
+      "screens": ["Standard"],
+      "facilities": ["snacks", "parking", "glassesRental3D"],
+      "noOfSeats": 30,
+      "seatConfiguration": {
+        "A": 10,
+        "B": 10,
+        "C": 10
+      },
+      "occupiedSeats": ["A3", "A6", "B1", "B9", "C4"]
+    },
+    {
+      "cinemaId": 6,
+      "name": "Grand Cinema Studio",
+      "location": "Vest",
+      "screens": ["3D", "4DX", "Standard"],
+      "facilities": ["parking", "snacks", "loungeVip", "glassesRental3D"],
+      "noOfSeats": 55,
+      "seatConfiguration": {
+        "A": 15,
+        "B": 15,
+        "C": 15,
+        "D": 10
+      },
+      "occupiedSeats": ["A7", "B3", "B12", "C10", "D2"]
+    }
+  ]
+}
