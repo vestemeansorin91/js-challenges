@@ -1,8 +1,14 @@
 let reservations = [];
 
 const reservationsService = {
+  getAllReservations: () => {
+    return reservations;
+  },
+  resetReservations: () => {
+    reservations = [];
+  },
   createReservation: (date, startHour, endHour, range) => { /* implementation */ },
-  updateReservationDate: (reservationId, { date, startHour, endHour, range }) => { /* implementation */ },
+  updateReservation: (reservationId, { date, startHour, endHour, range }) => { /* implementation */ },
   deleteReservation: (reservationId) => { /* implementation */ },
   createCategory: (reservationId, title) => { /* implementation */ },
   updateCategory: (reservationId, categoryId, title) => { /* implementation */ },
