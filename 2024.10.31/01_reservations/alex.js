@@ -44,7 +44,7 @@ function createCategory(reservationId, title) {
     return res.id === reservationId;
   });
   if (!reservation) {
-    return null;
+    return;
   }
 
   const categoryId = reservation.categories.length + 1;
@@ -72,4 +72,24 @@ function deleteCategory(reservationId, categoryId) {
   }
 
   reservation.categories.splice(category, 1);
+}
+
+function createField(reservationId, categoryId) {
+  const reservation = reservations.find((res) => res.id === reservationId);
+  if (!reservation) {
+    return;
+  }
+
+  const category = reservation.categories.find(
+    (item) => item.categoryId === categoryId
+  );
+  if (!category) {
+    return;
+  }
+
+  const fieldsId = category.fields.length + 1;
+  category.fields.push({
+    fieldsId,
+    occupiedSlots: [],
+  });
 }
