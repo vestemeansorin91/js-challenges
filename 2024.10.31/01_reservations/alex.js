@@ -33,10 +33,10 @@ function deleteReservation(id) {
     return res.id === id;
   });
   if (reservationID === -1) {
-    return;
+    console.log("ceva");
   }
 
-  return reservations.splice(reservationID, 1);
+  reservations.splice(reservationID, 1);
 }
 
 function createCategory(reservationId, title) {
@@ -46,40 +46,30 @@ function createCategory(reservationId, title) {
   if (!reservation) {
     return null;
   }
-  const categoryId = reservation.categories.length + 1;
 
-  reservation.categories.push({
+  const categoryId = reservation.categories.length + 1;
+  let arr = reservation.categories;
+  arr.push({
     categoryId,
     title,
     fields: [],
   });
 }
 
-function updateCategory(reservationId, categoryId, title) {
-  let reservation = reservations.find((res) => res.id === reservationId);
-  if (!reservation) {
-    return;
-  }
-
-  let category = reservation.category.find((cat) => cat.id === categoryId);
-  if (!reservation) {
-    return;
-  }
-
-  category.sport = title;
-}
-
 function deleteCategory(reservationId, categoryId) {
-  let reservation = reservations.find((res) => res.id === reservationId);
+  const reservation = reservations.find((res) => {
+    return res.id === reservationId;
+  });
   if (!reservation) {
     return;
   }
 
-  let categoryIndex = reservation.category.findIndex(
-    (cat) => cat.id === categoryId
-  );
-  if (categoryIndex === -1) {
+  const category = reservation.categories.findIndex((item) => {
+    return item.categoryId === categoryId;
+  });
+  if (category === -1) {
     return;
   }
-  reservation.category.splice(categoryIndex, 1);
+
+  reservation.categories.splice(category, 1);
 }
