@@ -113,3 +113,33 @@ function deleteField(reservationId, categoryId, fieldId) {
   }
   category.fields.splice(field, 1);
 }
+
+function createTimeField(
+  reservationId,
+  categoryId,
+  fieldId,
+  startTime,
+  duration
+) {
+  const reservation = reservations.find((res) => res.id === reservationId);
+  if (!reservation) {
+    return;
+  }
+
+  const category = reservation.categories.find(
+    (cat) => cat.categoryId === categoryId
+  );
+  if (!category) {
+    return;
+  }
+
+  const field = category.fields.find((field) => field.fieldId === fieldId);
+  if (!field) {
+    return;
+  }
+
+  field.occupiedSlots.push({
+    startTime,
+    duration,
+  });
+}
