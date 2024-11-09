@@ -143,3 +143,35 @@ function createTimeField(
     duration,
   });
 }
+
+function updateTimeField(
+  reservationId,
+  categoryId,
+  fieldId,
+  { startTime, duration }
+) {
+  const reservation = reservations.find((res) => res.id === reservationId);
+  if (!reservation) {
+    return;
+  }
+
+  const category = reservation.categories.find(
+    (cat) => cat.categoryId === categoryId
+  );
+  if (!category) {
+    return;
+  }
+
+  const field = category.fields.find((field) => field.fieldId === fieldId);
+  if (!field) {
+    return;
+  }
+
+  const slot = field.occupiedSlots.find((slot) => slot.startTime === startTime);
+  if (!slot) {
+    return;
+  }
+
+  slot.startTime = startTime;
+  slot.duration = duration;
+}
