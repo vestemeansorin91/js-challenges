@@ -17,7 +17,7 @@ function updateReservationDate(id, updateReservation) {
     return res.id === id;
   });
   if (!reservation) {
-    return null;
+    return;
   }
 
   for (let i = 0; i < Object.keys(updateReservation).length; i++) {
@@ -29,14 +29,14 @@ function updateReservationDate(id, updateReservation) {
 }
 
 function deleteReservation(id) {
-  const reservationID = reservations.findIndex((res) => {
+  const reservationId = reservations.findIndex((res) => {
     return res.id === id;
   });
-  if (reservationID === -1) {
-    console.log("ceva");
+  if (reservationId === -1) {
+    return;
   }
 
-  reservations.splice(reservationID, 1);
+  reservations.splice(reservationId, 1);
 }
 
 function createCategory(reservationId, title) {
@@ -87,9 +87,29 @@ function createField(reservationId, categoryId) {
     return;
   }
 
-  const fieldsId = category.fields.length + 1;
+  const fieldId = category.fields.length + 1;
   category.fields.push({
-    fieldsId,
+    fieldId,
     occupiedSlots: [],
   });
+}
+
+function deleteField(reservationId, categoryId, fieldId) {
+  const reservation = reservations.find((res) => res.id === reservationId);
+  if (!reservation) {
+    return;
+  }
+
+  const category = reservation.categories.find(
+    (item) => item.categoryId === categoryId
+  );
+  if (!category) {
+    return;
+  }
+
+  const field = category.fields.findIndex((field) => field.fieldId === fieldId);
+  if (field === -1) {
+    return;
+  }
+  category.fields.splice(field, 1);
 }
