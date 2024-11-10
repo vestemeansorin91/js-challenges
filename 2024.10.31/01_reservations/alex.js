@@ -7,6 +7,9 @@ import {
 
 const reservations = [];
 const timeSlots = setTimeSlots(startHour, endHour, hourRange);
+createReservation("2024-10-31", 5, 10, 15);
+deleteReservation(1);
+console.log(reservations);
 
 function createReservation(date, startHour, endHour, hourRange) {
   const id = reservations.length + 1;
@@ -36,15 +39,15 @@ function updateReservationDate(id, updateReservation) {
   }
 }
 
-function deleteReservation(id) {
-  const reservationId = reservations.findIndex((res) => {
-    return res.id === id;
+function deleteReservation(reservationId) {
+  const reservationIndex = reservations.findIndex((res) => {
+    return res.id === reservationId;
   });
-  if (reservationId === -1) {
+  if (reservationIndex === -1) {
     return;
   }
 
-  reservations.splice(reservationId, 1);
+  reservations.splice(reservationIndex, 1);
 }
 
 function createCategory(reservationId, title) {

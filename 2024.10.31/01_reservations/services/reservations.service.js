@@ -45,14 +45,14 @@ const reservationsService = {
     }
   },
   deleteReservation: (reservationId) => {
-    const reservationId = reservations.findIndex((res) => {
-      return res.id === id;
+    const reservationIndex = reservations.findIndex((res) => {
+      return res.id === reservationId;
     });
-    if (reservationId === -1) {
+    if (reservationIndex === -1) {
       return;
     }
 
-    reservations.splice(reservationId, 1);
+    reservations.splice(reservationIndex, 1);
   },
   createCategory: (reservationId, title) => {
     const reservation = reservations.find((res) => {
@@ -222,10 +222,10 @@ const reservationsService = {
     }
   },
   currentTimeSlot: (timeSlots, { hour, minutes }) => {
-    const [firstHour, firstMinutes] = arr[0]
+    const [firstHour, firstMinutes] = timeSlots[0]
       .split(":")
       .map((time) => Number(time));
-    const [lastHour, lastMinutes] = arr[arr.length - 1]
+    const [lastHour, lastMinutes] = timeSlots[timeSlots.length - 1]
       .split(":")
       .map((time) => Number(time));
 
