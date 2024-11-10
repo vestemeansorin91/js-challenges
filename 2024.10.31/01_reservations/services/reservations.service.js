@@ -81,14 +81,14 @@ const reservationsService = {
       return;
     }
 
-    const category = reservation.categories.findIndex((item) => {
-      return item.categoryId === categoryId;
+    const categoryIndex = reservation.categories.findIndex((category) => {
+      return category.id === categoryId;
     });
-    if (category === -1) {
+    if (categoryIndex === -1) {
       return;
     }
 
-    reservation.categories.splice(category, 1);
+    reservation.categories.splice(categoryIndex, 1);
   },
   createField: (reservationId, categoryId) => {
     const reservation = reservations.find((res) => res.id === reservationId);
