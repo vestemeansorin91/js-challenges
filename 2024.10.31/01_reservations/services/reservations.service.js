@@ -110,25 +110,25 @@ const reservationsService = {
     });
   },
   deleteField: (reservationId, categoryId, fieldId) => {
-    const reservation = reservations.find((res) => res.id === reservationId);
+    const reservation = reservations.find((reservation) => reservation.id === reservationId);
     if (!reservation) {
       return;
     }
 
     const category = reservation.categories.find(
-      (item) => item.categoryId === categoryId
+      (category) => category.id === categoryId
     );
     if (!category) {
       return;
     }
 
-    const field = category.fields.findIndex(
-      (field) => field.fieldId === fieldId
+    const fieldIndex = category.fields.findIndex(
+      (field) => field.id === fieldId
     );
-    if (field === -1) {
+    if (fieldIndex === -1) {
       return;
     }
-    category.fields.splice(field, 1);
+    category.fields.splice(fieldIndex, 1);
   },
   createTimeField: (
     reservationId,
