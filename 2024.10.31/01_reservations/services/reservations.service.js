@@ -25,10 +25,10 @@ const reservationsService = {
       hourRange,
       categories: [],
     });
-  },
+  }, 
   updateReservation: (
     reservationId,
-    { date, startHour, endHour, hourRange }
+    updateReservation
   ) => {
     let reservation = reservations.find((res) => {
       return res.id === reservationId;
