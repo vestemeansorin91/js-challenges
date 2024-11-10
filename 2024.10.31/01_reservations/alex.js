@@ -1,7 +1,25 @@
-import { endHour, hourRange, setTimeSlots, startHour } from "./helpers/time-slots.helpers.js";
+import {
+  endHour,
+  hourRange,
+  setTimeSlots,
+  startHour,
+} from "./helpers/time-slots.helpers.js";
 
 const reservations = [];
 const timeSlots = setTimeSlots(startHour, endHour, hourRange);
+
+createReservation("2024-10-31", 5, 10, 15);
+createCategory(1, "fotbal");
+createField(1, 1);
+createTimeField(1, 1, 1, "07:00", 30);
+// console.log(isSlotOccupied(1, 1, 1, "07:30"));
+// console.log(isSlotOccupied(1, 1, 1, "07:00"));
+// console.log(isSlotOccupied(1, 1, 1, "08:30"));
+// console.log(isSlotOccupied(1, 1, 1, "07:01"));
+
+console.log(currentTimeSlot(timeSlots, { hour: 10, minutes: 30 }));
+console.log(currentTimeSlot(timeSlots, { hour: 9, minutes: 30 }));
+console.log(currentTimeSlot(timeSlots, { hour: 12, minutes: 30 }));
 
 function createReservation(date, startHour, endHour, hourRange) {
   const id = reservations.length + 1;
@@ -197,10 +215,31 @@ function isSlotOccupied(reservationId, categoryId, fieldId, time) {
     return;
   }
 
-  const slot = field.occupiedSlots.find((slot) => slot.startTime === time);
+  const slot = field.occupiedSlots.find((slot) => {
+    return slot.startTime === time;
+  });
   if (!slot) {
-    return;
+    return false;
   }
 
-  return timeSlots.includes(slot.startTime);
+  if (slot.startTime === time) {
+    return true;
+  }
+}
+
+function currentTimeSlot(arr, { hour, minutes }) {
+  const [firstHour, firstMinutes] = arr[0]
+    .split(":")
+    .map((time) => Number(time));
+  const [lastHour, lastMinutes] = arr[arr.length - 1]
+    .split(":")
+    .map((time) => Number(time));
+
+  const currentTimeMinutes = hour * 60 + minutes;
+  const firstTimeMinutes = firstHour * 60 + firstMinutes;
+  const lastTimeMinutes = lastHour * 60 + lastMinutes;
+  return (
+    currentTimeMinutes >= firstTimeMinutes &&
+    currentTimeMinutes <= lastTimeMinutes
+  );
 }
