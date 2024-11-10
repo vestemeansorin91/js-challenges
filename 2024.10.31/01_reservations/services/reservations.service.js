@@ -143,13 +143,13 @@ const reservationsService = {
     }
 
     const category = reservation.categories.find(
-      (cat) => cat.categoryId === categoryId
+      (category) => category.id === categoryId
     );
     if (!category) {
       return;
     }
 
-    const field = category.fields.find((field) => field.fieldId === fieldId);
+    const field = category.fields.find((field) => field.id === fieldId);
     if (!field) {
       return;
     }
@@ -193,19 +193,19 @@ const reservationsService = {
     slot.duration = duration;
   },
   isSlotOccupied: (reservationId, categoryId, fieldId, time) => {
-    const reservation = reservations.find((res) => res.id === reservationId);
+    const reservation = reservations.find((reservation) => reservation.id === reservationId);
     if (!reservation) {
       return;
     }
 
     const category = reservation.categories.find(
-      (cat) => cat.categoryId === categoryId
+      (cat) => cat.id === categoryId
     );
     if (!category) {
       return;
     }
 
-    const field = category.fields.find((field) => field.fieldId === fieldId);
+    const field = category.fields.find((field) => field.id === fieldId);
     if (!field) {
       return;
     }
