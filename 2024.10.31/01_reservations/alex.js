@@ -8,19 +8,6 @@ import {
 const reservations = [];
 const timeSlots = setTimeSlots(startHour, endHour, hourRange);
 
-createReservation("2024-10-31", 5, 10, 15);
-createCategory(1, "fotbal");
-createField(1, 1);
-createTimeField(1, 1, 1, "07:00", 30);
-// console.log(isSlotOccupied(1, 1, 1, "07:30"));
-// console.log(isSlotOccupied(1, 1, 1, "07:00"));
-// console.log(isSlotOccupied(1, 1, 1, "08:30"));
-// console.log(isSlotOccupied(1, 1, 1, "07:01"));
-
-console.log(currentTimeSlot(timeSlots, { hour: 10, minutes: 30 }));
-console.log(currentTimeSlot(timeSlots, { hour: 9, minutes: 30 }));
-console.log(currentTimeSlot(timeSlots, { hour: 12, minutes: 30 }));
-
 function createReservation(date, startHour, endHour, hourRange) {
   const id = reservations.length + 1;
   reservations.push({

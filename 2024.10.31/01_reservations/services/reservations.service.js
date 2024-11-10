@@ -1,4 +1,9 @@
-import { endHour, hourRange, setTimeSlots, startHour } from '../helpers/time-slots.helpers.js';
+import {
+  endHour,
+  hourRange,
+  setTimeSlots,
+  startHour,
+} from "../helpers/time-slots.helpers.js";
 
 let reservations = [];
 const timeSlots = setTimeSlots(startHour, endHour, hourRange);
@@ -11,28 +16,119 @@ const reservationsService = {
     reservations = [];
   },
   createReservation: (date, startHour, endHour, hourRange) => {
-    /* implementation */
+    const id = reservations.length + 1;
+    reservations.push({
+      id,
+      date,
+      startHour,
+      endHour,
+      hourRange,
+      categories: [],
+    });
   },
-  updateReservation: (reservationId, { date, startHour, endHour, hourRange }) => {
-    /* implementation */
+  updateReservation: (
+    reservationId,
+    { date, startHour, endHour, hourRange }
+  ) => {
+    let reservation = reservations.find((res) => {
+      return res.id === reservationId;
+    });
+    if (!reservation) {
+      return;
+    }
+
+    for (let i = 0; i < Object.keys(updateReservation).length; i++) {
+      const key = Object.keys(updateReservation)[i];
+      if (reservation.hasOwnProperty(key)) {
+        reservation[key] = updateReservation[key];
+      }
+    }
   },
   deleteReservation: (reservationId) => {
-    /* implementation */
+    const reservationId = reservations.findIndex((res) => {
+      return res.id === id;
+    });
+    if (reservationId === -1) {
+      return;
+    }
+
+    reservations.splice(reservationId, 1);
   },
   createCategory: (reservationId, title) => {
-    /* implementation */
+    const reservation = reservations.find((res) => {
+      return res.id === reservationId;
+    });
+    if (!reservation) {
+      return;
+    }
+
+    const categoryId = reservation.categories.length + 1;
+    let arr = reservation.categories;
+    arr.push({
+      categoryId,
+      title,
+      fields: [],
+    });
   },
   updateCategory: (reservationId, categoryId, title) => {
     /* implementation */
   },
   deleteCategory: (reservationId, categoryId) => {
-    /* implementation */
+    const reservation = reservations.find((res) => {
+      return res.id === reservationId;
+    });
+    if (!reservation) {
+      return;
+    }
+
+    const category = reservation.categories.findIndex((item) => {
+      return item.categoryId === categoryId;
+    });
+    if (category === -1) {
+      return;
+    }
+
+    reservation.categories.splice(category, 1);
   },
   createField: (reservationId, categoryId) => {
-    /* implementation */
+    const reservation = reservations.find((res) => res.id === reservationId);
+    if (!reservation) {
+      return;
+    }
+
+    const category = reservation.categories.find(
+      (item) => item.categoryId === categoryId
+    );
+    if (!category) {
+      return;
+    }
+
+    const fieldId = category.fields.length + 1;
+    category.fields.push({
+      fieldId,
+      occupiedSlots: [],
+    });
   },
   deleteField: (reservationId, categoryId, fieldId) => {
-    /* implementation */
+    const reservation = reservations.find((res) => res.id === reservationId);
+    if (!reservation) {
+      return;
+    }
+
+    const category = reservation.categories.find(
+      (item) => item.categoryId === categoryId
+    );
+    if (!category) {
+      return;
+    }
+
+    const field = category.fields.findIndex(
+      (field) => field.fieldId === fieldId
+    );
+    if (field === -1) {
+      return;
+    }
+    category.fields.splice(field, 1);
   },
   createTimeField: (
     reservationId,
@@ -41,7 +137,27 @@ const reservationsService = {
     startTime,
     duration
   ) => {
-    /* implementation */
+    const reservation = reservations.find((res) => res.id === reservationId);
+    if (!reservation) {
+      return;
+    }
+
+    const category = reservation.categories.find(
+      (cat) => cat.categoryId === categoryId
+    );
+    if (!category) {
+      return;
+    }
+
+    const field = category.fields.find((field) => field.fieldId === fieldId);
+    if (!field) {
+      return;
+    }
+
+    field.occupiedSlots.push({
+      startTime,
+      duration,
+    });
   },
   updateTimeField: (
     reservationId,
@@ -49,13 +165,77 @@ const reservationsService = {
     fieldId,
     { startTime, duration }
   ) => {
-    /* implementation */
+    const reservation = reservations.find((res) => res.id === reservationId);
+    if (!reservation) {
+      return;
+    }
+
+    const category = reservation.categories.find(
+      (cat) => cat.categoryId === categoryId
+    );
+    if (!category) {
+      return;
+    }
+
+    const field = category.fields.find((field) => field.fieldId === fieldId);
+    if (!field) {
+      return;
+    }
+
+    const slot = field.occupiedSlots.find(
+      (slot) => slot.startTime === startTime
+    );
+    if (!slot) {
+      return;
+    }
+
+    slot.startTime = startTime;
+    slot.duration = duration;
   },
   isSlotOccupied: (reservationId, categoryId, fieldId, time) => {
-   /* implementation */
+    const reservation = reservations.find((res) => res.id === reservationId);
+    if (!reservation) {
+      return;
+    }
+
+    const category = reservation.categories.find(
+      (cat) => cat.categoryId === categoryId
+    );
+    if (!category) {
+      return;
+    }
+
+    const field = category.fields.find((field) => field.fieldId === fieldId);
+    if (!field) {
+      return;
+    }
+
+    const slot = field.occupiedSlots.find((slot) => {
+      return slot.startTime === time;
+    });
+    if (!slot) {
+      return false;
+    }
+
+    if (slot.startTime === time) {
+      return true;
+    }
   },
   currentTimeSlot: (timeSlots, { hour, minutes }) => {
-    /* implementation */
+    const [firstHour, firstMinutes] = arr[0]
+      .split(":")
+      .map((time) => Number(time));
+    const [lastHour, lastMinutes] = arr[arr.length - 1]
+      .split(":")
+      .map((time) => Number(time));
+
+    const currentTimeMinutes = hour * 60 + minutes;
+    const firstTimeMinutes = firstHour * 60 + firstMinutes;
+    const lastTimeMinutes = lastHour * 60 + lastMinutes;
+    return (
+      currentTimeMinutes >= firstTimeMinutes &&
+      currentTimeMinutes <= lastTimeMinutes
+    );
   },
 };
 
