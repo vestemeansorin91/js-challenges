@@ -1,49 +1,16 @@
+import { endHour, hourRange, setTimeSlots, startHour } from "./helpers/time-slots.helpers.js";
+
 const reservations = [];
+const timeSlots = setTimeSlots(startHour, endHour, hourRange);
 
-const start = 9;
-const end = 24;
-const range = 30;
-const timeSlots = setTimeSlots(start, end, range);
-
-function setTimeSlots(hour, end, range) {
-  const result = [];
-  let minutes = 0;
-
-  for (let i = hour; i <= end; i++) {
-    const fullHour = `${doubleDigits(i)}:${doubleDigits(minutes)}`;
-
-    if (i === end && minutes === range) {
-      continue;
-    }
-
-    if (minutes === 60) {
-      minutes = 0;
-      continue;
-    }
-
-    result.push(fullHour);
-    minutes += range;
-    i--;
-  }
-
-  return result;
-}
-
-function doubleDigits(input) {
-  if (input < 10) {
-    return "0" + input;
-  }
-  return input;
-}
-
-function createReservation(date, startHour, endHour, range) {
+function createReservation(date, startHour, endHour, hourRange) {
   const id = reservations.length + 1;
   reservations.push({
     id,
     date,
     startHour,
     endHour,
-    range,
+    hourRange,
     categories: [],
   });
 }

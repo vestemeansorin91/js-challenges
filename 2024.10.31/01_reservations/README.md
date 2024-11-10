@@ -5,10 +5,10 @@ I want to be able to create everything that I need for a reservation.
 
 
 ## Method R1:
-- I want to have a method which takes a string which represents the date (ex. `2024-10-31`), startHour (ex. `6`), endHour (ex. `9`), range (ex. `15`) and will create an Object (see Output), id is index+1
+- I want to have a method which takes a string which represents the date (ex. `2024-10-31`), startHour (ex. `6`), endHour (ex. `9`), hourRange (ex. `15`) and will create an Object (see Output), id is index+1
 
 ### INPUT
-Skeleton **createReservation**(date, startHour, endHour, range)
+Skeleton **createReservation**(date, startHour, endHour, hourRange)
 
 Example ***createReservation***('2024-10-31', 6, 9, 15)
 
@@ -20,12 +20,12 @@ Example ***createReservation***('2024-10-31', 6, 9, 15)
       "categories": [],
       "startHour": 6,
       "endHour": 9,
-      "range": 15
+      "hourRange": 15
 }
 ```
 ---
 ## Method R2:
-- I want to have a method which can update date, startHour, endHour, range ( can be any of those four)
+- I want to have a method which can update date, startHour, endHour, hourRange ( can be any of those four)
 
 ### INPUT
 Skeleton **updateReservationDate**(reservationId, { date, startHour })
@@ -40,7 +40,7 @@ Example ***updateReservationDate***(1, { date: '2024-11-02', startHour: 8 })
       "categories": [],
       "startHour": 8,
       "endHour": 9,
-      "range": 15
+      "hourRange": 15
 }
 ```
 ## Method R3:
@@ -74,7 +74,7 @@ Example **createCategory**(1, 'Fotbal')
       ],
       "startHour": 6,
       "endHour": 9,
-      "range": 15
+      "hourRange": 15
 }
 ```
 
@@ -103,7 +103,7 @@ Example **updateCategory**(1, 1, 'Squash')
       ],
       "startHour": 6,
       "endHour": 9,
-      "range": 15
+      "hourRange": 15
 }
 ```
 
@@ -144,7 +144,7 @@ Example **createField**(1, 1)
       ],
       "startHour": 6,
       "endHour": 9,
-      "range": 15
+      "hourRange": 15
 }
 ```
 
@@ -192,7 +192,7 @@ Example **createTimeField**(1, 1, 1, "07:00", 60)
       ],
       "startHour": 6,
       "endHour": 9,
-      "range": 15
+      "hourRange": 15
 }
 ```
 ---
@@ -230,7 +230,7 @@ Example **updateTimeField**(1, 1, 1, {"08:00", 30})
       ],
       "startHour": 6,
       "endHour": 9,
-      "range": 15
+      "hourRange": 15
 }
 ```
 #### *(update 2024.11.01)*
@@ -256,9 +256,9 @@ false
 ```
 ---
 ## Method CT: 
-Bring in this file, the method that you've made to generate the timeSlots from startHour, endHour, range.
+Bring in this file, the method that you've made to generate the timeSlots from startHour, endHour, hourRange.
 
-Add in this file at top a `const timeSlots` from `9` to `22`, with a range of `30`.
+Add in this file at top a `const timeSlots` from `9` to `22`, with a hourRange of `30`.
 
 We can know the current time. I want to take the current hour and the minutes and to compare it to timeSlot.
 
@@ -269,7 +269,7 @@ So the match should be on `"9:30"`, should return `true`
 
 ---- 
 Another example if the given time is `23` and `52`.
-in our case the value is between `"23:30"` and `"24:00"`, but our endHour is `"22:00"` and is out of the range, should return `false`
+in our case the value is between `"23:30"` and `"24:00"`, but our endHour is `"22:00"` and is out of the hourRange, should return `false`
 
 
 ### INPUT

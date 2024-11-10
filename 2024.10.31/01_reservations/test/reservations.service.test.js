@@ -1,12 +1,15 @@
 import { expect } from 'chai';
 import reservationsService from '../services/reservations.service.js';
+import { endHour, hourRange, setTimeSlots, startHour } from '../helpers/time-slots.helpers.js';
+
+const timeSlots = setTimeSlots(startHour, endHour, hourRange);
 
 describe('Reservations Service Tests', () => {
   beforeEach(() => {
     reservationsService.resetReservations();
   });
 
-  describe('createReservation(date, startHour, endHour, range)', () => {
+  describe('createReservation(date, startHour, endHour, hourRange)', () => {
     it('should create a new reservation and confirm reservations array contains it', () => {
       reservationsService.createReservation('2024-10-31', 6, 9, 15);
       expect(reservationsService.getAllReservations()).to.deep.equal([
@@ -16,13 +19,13 @@ describe('Reservations Service Tests', () => {
           categories: [],
           startHour: 6,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
     });
   });
 
-  describe('updateReservation(reservationId, { date, startHour, endHour, range })', () => {
+  describe('updateReservation(reservationId, { date, startHour, endHour, hourRange })', () => {
     it('should update a reservation and confirm reservations array contains the updated reservation', () => {
       reservationsService.createReservation('2024-10-31', 6, 9, 15);
       reservationsService.updateReservation(1, { date: '2024-11-02', startHour: 8 });
@@ -33,7 +36,7 @@ describe('Reservations Service Tests', () => {
           categories: [],
           startHour: 8,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
     });
@@ -64,7 +67,7 @@ describe('Reservations Service Tests', () => {
           ],
           startHour: 6,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
     });
@@ -88,7 +91,7 @@ describe('Reservations Service Tests', () => {
           ],
           startHour: 6,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
     });
@@ -106,7 +109,7 @@ describe('Reservations Service Tests', () => {
           categories: [],
           startHour: 6,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
     });
@@ -135,7 +138,7 @@ describe('Reservations Service Tests', () => {
           ],
           startHour: 6,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
     });
@@ -160,7 +163,7 @@ describe('Reservations Service Tests', () => {
           ],
           startHour: 6,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
     });
@@ -195,7 +198,7 @@ describe('Reservations Service Tests', () => {
           ],
           startHour: 6,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
     });
@@ -231,9 +234,43 @@ describe('Reservations Service Tests', () => {
           ],
           startHour: 6,
           endHour: 9,
-          range: 15
+          hourRange: 15
         }
       ]);
+    });
+  });
+
+  describe('isSlotOccupied(reservationId, categoryId, fieldId, time)', () => {
+    it('should return true if the slot is occupied', () => {
+      reservationsService.createReservation('2024-10-31', 6, 9, 15);
+      reservationsService.createCategory(1, 'Fotbal');
+      reservationsService.createField(1, 1);
+      reservationsService.createTimeField(1, 1, 1, '08:00', 60);
+      
+      const result = reservationsService.isSlotOccupied(1, 1, 1, '08:00');
+      expect(result).to.be.true;
+    });
+
+    it('should return false if the slot is not occupied', () => {
+      reservationsService.createReservation('2024-10-31', 6, 9, 15);
+      reservationsService.createCategory(1, 'Fotbal');
+      reservationsService.createField(1, 1);
+      reservationsService.createTimeField(1, 1, 1, '08:00', 60);
+      
+      const result = reservationsService.isSlotOccupied(1, 1, 1, '22:00');
+      expect(result).to.be.false;
+    });
+  });
+
+  describe('currentTimeSlot(timeSlots, { hour, minutes })', () => {
+    it('should return true if the time is within a valid time slot', () => {
+      const result = reservationsService.currentTimeSlot(timeSlots, { hour: 9, minutes: 40 });
+      expect(result).to.be.true;
+    });
+
+    it('should return false if the time is outside of the defined time slots', () => {
+      const result = reservationsService.currentTimeSlot(timeSlots, { hour: 23, minutes: 52 });
+      expect(result).to.be.false;
     });
   });
 });
