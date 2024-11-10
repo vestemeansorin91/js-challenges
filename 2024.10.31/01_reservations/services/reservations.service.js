@@ -91,13 +91,13 @@ const reservationsService = {
     reservation.categories.splice(categoryIndex, 1);
   },
   createField: (reservationId, categoryId) => {
-    const reservation = reservations.find((res) => res.id === reservationId);
+    const reservation = reservations.find((reservation) => reservation.id === reservationId);
     if (!reservation) {
       return;
     }
 
     const category = reservation.categories.find(
-      (item) => item.categoryId === categoryId
+      (category) => category.id === categoryId
     );
     if (!category) {
       return;
@@ -105,7 +105,7 @@ const reservationsService = {
 
     const fieldId = category.fields.length + 1;
     category.fields.push({
-      fieldId,
+      id: fieldId,
       occupiedSlots: [],
     });
   },
