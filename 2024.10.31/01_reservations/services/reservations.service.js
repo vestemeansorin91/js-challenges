@@ -65,7 +65,7 @@ const reservationsService = {
     const categoryId = reservation.categories.length + 1;
     let arr = reservation.categories;
     arr.push({
-      categoryId,
+      id: categoryId,
       title,
       fields: [],
     });
