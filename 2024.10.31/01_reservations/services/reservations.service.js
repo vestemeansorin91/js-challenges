@@ -25,11 +25,8 @@ const reservationsService = {
       hourRange,
       categories: [],
     });
-  }, 
-  updateReservation: (
-    reservationId,
-    updateReservation
-  ) => {
+  },
+  updateReservation: (reservationId, updateReservation) => {
     let reservation = reservations.find((res) => {
       return res.id === reservationId;
     });
@@ -71,7 +68,21 @@ const reservationsService = {
     });
   },
   updateCategory: (reservationId, categoryId, title) => {
-    /* implementation */
+    const reservation = reservations.find(
+      (reservation) => reservation.id === reservationId
+    );
+    if (!reservation) {
+      return;
+    }
+
+    const category = reservation.categories.find(
+      (category) => category.id === categoryId
+    );
+    if (!category) {
+      return;
+    }
+
+    category.title = title;
   },
   deleteCategory: (reservationId, categoryId) => {
     const reservation = reservations.find((res) => {
@@ -91,7 +102,9 @@ const reservationsService = {
     reservation.categories.splice(categoryIndex, 1);
   },
   createField: (reservationId, categoryId) => {
-    const reservation = reservations.find((reservation) => reservation.id === reservationId);
+    const reservation = reservations.find(
+      (reservation) => reservation.id === reservationId
+    );
     if (!reservation) {
       return;
     }
@@ -110,7 +123,9 @@ const reservationsService = {
     });
   },
   deleteField: (reservationId, categoryId, fieldId) => {
-    const reservation = reservations.find((reservation) => reservation.id === reservationId);
+    const reservation = reservations.find(
+      (reservation) => reservation.id === reservationId
+    );
     if (!reservation) {
       return;
     }
@@ -165,19 +180,21 @@ const reservationsService = {
     fieldId,
     { startTime, duration }
   ) => {
-    const reservation = reservations.find((res) => res.id === reservationId);
+    const reservation = reservations.find(
+      (reservation) => reservation.id === reservationId
+    );
     if (!reservation) {
       return;
     }
 
     const category = reservation.categories.find(
-      (cat) => cat.categoryId === categoryId
+      (category) => category.id === categoryId
     );
     if (!category) {
       return;
     }
 
-    const field = category.fields.find((field) => field.fieldId === fieldId);
+    const field = category.fields.find((field) => field.id === fieldId);
     if (!field) {
       return;
     }
@@ -189,17 +206,22 @@ const reservationsService = {
       return;
     }
 
+    console.log('before ->', {slot})
     slot.startTime = startTime;
     slot.duration = duration;
+    console.log('after ->', {slot})
+  
   },
   isSlotOccupied: (reservationId, categoryId, fieldId, time) => {
-    const reservation = reservations.find((reservation) => reservation.id === reservationId);
+    const reservation = reservations.find(
+      (reservation) => reservation.id === reservationId
+    );
     if (!reservation) {
       return;
     }
 
     const category = reservation.categories.find(
-      (cat) => cat.id === categoryId
+      (category) => category.id === categoryId
     );
     if (!category) {
       return;
@@ -232,6 +254,7 @@ const reservationsService = {
     const currentTimeMinutes = hour * 60 + minutes;
     const firstTimeMinutes = firstHour * 60 + firstMinutes;
     const lastTimeMinutes = lastHour * 60 + lastMinutes;
+
     return (
       currentTimeMinutes >= firstTimeMinutes &&
       currentTimeMinutes <= lastTimeMinutes
