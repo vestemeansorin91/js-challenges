@@ -200,17 +200,16 @@ const reservationsService = {
     }
 
     const slot = field.occupiedSlots.find(
-      (slot) => slot.startTime === startTime
+      (slot) => slot.startTime !== startTime
     );
     if (!slot) {
       return;
     }
 
-    console.log('before ->', {slot})
+    console.log("before ->", { slot });
     slot.startTime = startTime;
     slot.duration = duration;
-    console.log('after ->', {slot})
-  
+    console.log("after ->", { slot });
   },
   isSlotOccupied: (reservationId, categoryId, fieldId, time) => {
     const reservation = reservations.find(

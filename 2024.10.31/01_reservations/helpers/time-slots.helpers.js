@@ -1,4 +1,4 @@
-export const startHour = 10;
+export const startHour = 9;
 export const endHour = 12;
 export const hourRange = 30;
 
