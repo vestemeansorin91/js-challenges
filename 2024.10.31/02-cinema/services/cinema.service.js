@@ -16,7 +16,7 @@ import fs from "fs";
 /**
  * @type {Cinema[]}
  */
-const { cinemas } = JSON.parse(fs.readFileSync("./data/cinemas.json", "utf-8"));
+const { cinemas } = JSON.parse(fs.readFileSync("../data/cinemas.json", "utf-8"));
 
 const cinemaService = {
   /**
