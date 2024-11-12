@@ -1,54 +1,103 @@
-import { expect } from 'chai';
-import facilitiesService from '../services/facilities.service.js';
+import { expect } from "chai";
+import fs from "fs";
+import facilitiesService from "../services/facilities.service.js";
 
-// Mock facilities data for testing
-const mockFacilities = {
-  parking: "Parcare",
-  snacks: "Gustări",
-  glassesRental3D: "Închiriere ochelari 3D",
-  loungeVip: "Lounge VIP",
-  arcade: "Arcadă"
-};
+const mockFacilities = JSON.parse(
+  fs.readFileSync("./data/facilities.json", "utf-8"),
+);
+const mockCinemas = JSON.parse(
+  fs.readFileSync("./data/cinemas.json", "utf-8"),
+).cinemas;
 
-// Mock cinemas data for testing `findCinemasWithFacility`
-const mockCinemas = [
-  { cinemaId: 1, name: "Cineplex 21", facilities: ["parking", "snacks", "glassesRental3D"] },
-  { cinemaId: 2, name: "Galaxy Cinemas", facilities: ["loungeVip", "arcade", "parking"] },
-  { cinemaId: 3, name: "Cinema City Mall", facilities: ["snacks", "parking", "loungeVip"] }
-];
-
-describe('Facilities Service Tests', () => {
-  
-  describe('getFacilityLabel(facilityKey)', () => {
-    it('should return the correct label for a valid facility key', () => {
+describe("Facilities Service Tests", () => {
+  describe("getFacilityLabel(facilityKey)", () => {
+    it("should return the correct label for a valid facility key", () => {
       const label = facilitiesService.getFacilityLabel("parking");
-      expect(label).to.equal("Parcare");
+      expect(label).to.equal(mockFacilities.parking);
     });
 
-    it('should return null for an invalid facility key', () => {
+    it("should return null for an invalid facility key", () => {
       const label = facilitiesService.getFacilityLabel("invalidKey");
       expect(label).to.be.null;
     });
+
+    it("should handle case insensitivity for facility keys", () => {
+      const label = facilitiesService.getFacilityLabel("Parking");
+      expect(label).to.equal(mockFacilities.parking);
+    });
   });
 
-  describe('listAllFacilities()', () => {
-    it('should return all facilities with correct labels', () => {
+  describe("listAllFacilities()", () => {
+    it("should return all facilities with correct labels", () => {
       const facilities = facilitiesService.listAllFacilities();
       expect(facilities).to.deep.equal(mockFacilities);
     });
-  });
 
-  describe('findCinemasWithFacility(facilityKey)', () => {
-    it('should return cinemas with the specified facility', () => {
-      const cinemasWithParking = facilitiesService.findCinemasWithFacility("parking");
-      expect(cinemasWithParking).to.be.an('array').that.has.lengthOf(3);
-      expect(cinemasWithParking.map(cinema => cinema.cinemaId)).to.include.members([1, 2, 3]);
-    });
-
-    it('should return an empty array if no cinemas have the specified facility', () => {
-      const cinemasWithInvalidFacility = facilitiesService.findCinemasWithFacility("nonExistentFacility");
-      expect(cinemasWithInvalidFacility).to.be.an('array').that.is.empty;
+    it("should return an empty object if no facilities are available", () => {
+      const originalFacilities = { ...mockFacilities };
+      Object.keys(mockFacilities).forEach((key) => delete mockFacilities[key]);
+      const facilities = facilitiesService.listAllFacilities();
+      expect(facilities).to.deep.equal({});
+      Object.assign(mockFacilities, originalFacilities);
     });
   });
 
+  describe("findCinemasWithFacility(facilityKey)", () => {
+    it("should return cinemas with the specified facility", () => {
+      const cinemasWithParking =
+        facilitiesService.findCinemasWithFacility("parking");
+      const expectedCinemas = mockCinemas.filter((cinema) =>
+        cinema.facilities.includes("parking"),
+      );
+      expect(cinemasWithParking)
+        .to.be.an("array")
+        .that.has.lengthOf(expectedCinemas.length);
+      expect(
+        cinemasWithParking.map((cinema) => cinema.cinemaId),
+      ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
+    });
+
+    it("should return an empty array if no cinemas have the specified facility", () => {
+      const cinemasWithInvalidFacility =
+        facilitiesService.findCinemasWithFacility("nonExistentFacility");
+      expect(cinemasWithInvalidFacility).to.be.an("array").that.is.empty;
+    });
+
+    it("should handle case insensitivity for facility keys", () => {
+      const cinemasWithArcade =
+        facilitiesService.findCinemasWithFacility("Arcade");
+      const expectedCinemas = mockCinemas.filter((cinema) =>
+        cinema.facilities.includes("arcade"),
+      );
+      expect(cinemasWithArcade)
+        .to.be.an("array")
+        .that.has.lengthOf(expectedCinemas.length);
+      expect(
+        cinemasWithArcade.map((cinema) => cinema.cinemaId),
+      ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
+    });
+
+    it("should return multiple cinemas with a shared facility", () => {
+      const cinemasWithSnacks =
+        facilitiesService.findCinemasWithFacility("snacks");
+      const expectedCinemas = mockCinemas.filter((cinema) =>
+        cinema.facilities.includes("snacks"),
+      );
+      expect(cinemasWithSnacks)
+        .to.be.an("array")
+        .that.has.lengthOf(expectedCinemas.length);
+      expect(
+        cinemasWithSnacks.map((cinema) => cinema.cinemaId),
+      ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
+    });
+
+    it("should return no cinemas if facility data is unavailable", () => {
+      const originalMockCinemas = JSON.parse(JSON.stringify(mockCinemas));
+      mockCinemas.forEach((cinema) => (cinema.facilities = []));
+      const cinemasWithParking =
+        facilitiesService.findCinemasWithFacility("parking");
+      expect(cinemasWithParking).to.be.an("array").that.is.empty;
+      Object.assign(mockCinemas, originalMockCinemas);
+    });
+  });
 });

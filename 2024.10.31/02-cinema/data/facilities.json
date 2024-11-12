@@ -1,8 +1,23 @@
 {
-    "parking": "Parcare",
-    "snacks": "Gustări",
-    "glassesRental3D": "Închiriere ochelari 3D",
-    "loungeVip": "Lounge VIP",
-    "arcade": "Arcadă"
-  }
-  
+  "parking": "Parcare",
+  "snacks": "Gustări",
+  "glassesRental3D": "Închiriere ochelari 3D",
+  "loungeVip": "Lounge VIP",
+  "arcade": "Arcadă",
+  "wheelchairAccess": "Acces pentru scaune cu rotile",
+  "wifi": "Wi-Fi",
+  "reclinerSeats": "Scaune rabatabile",
+  "valetService": "Serviciu de valet",
+  "childCare": "Îngrijire pentru copii",
+  "giftShop": "Magazin de cadouri",
+  "restaurant": "Restaurant",
+  "bar": "Bar",
+  "mobileChargingStations": "Stații de încărcare mobilă",
+  "photoBooth": "Cabină foto",
+  "vipParking": "Parcare VIP",
+  "coatCheck": "Garderobă",
+  "coffeeShop": "Cafenea",
+  "petFriendly": "Permis pentru animale de companie",
+  "virtualReality": "Realitate virtuală",
+  "massageChairs": "Scaune de masaj"
+}

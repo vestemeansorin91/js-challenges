@@ -1,65 +1,74 @@
 {
-    "movies": [
-      {
-        "movieId": 1,
-        "title": "Călătorul în timp",
-        "genres": ["sciFi", "adventure"],
-        "duration": 120
-      },
-      {
-        "movieId": 2,
-        "title": "Escapada romantică",
-        "genres": ["romance", "comedy"],
-        "duration": 105
-      },
-      {
-        "movieId": 3,
-        "title": "Eroii acțiunii",
-        "genres": ["action", "thriller"],
-        "duration": 130
-      },
-      {
-        "movieId": 4,
-        "title": "Noaptea misterelor",
-        "genres": ["mystery", "drama"],
-        "duration": 115
-      },
-      {
-        "movieId": 5,
-        "title": "Odiseea spațială",
-        "genres": ["sciFi", "adventure"],
-        "duration": 140
-      },
-      {
-        "movieId": 6,
-        "title": "Expresul terorii",
-        "genres": ["thriller", "horror"],
-        "duration": 110
-      },
-      {
-        "movieId": 7,
-        "title": "Căutarea fantastică",
-        "genres": ["fantasy", "adventure"],
-        "duration": 125
-      },
-      {
-        "movieId": 8,
-        "title": "Detectivul",
-        "genres": ["crime", "drama"],
-        "duration": 100
-      },
-      {
-        "movieId": 9,
-        "title": "Întâlnirea extraterestră",
-        "genres": ["sciFi", "horror"],
-        "duration": 95
-      },
-      {
-        "movieId": 10,
-        "title": "Călătoria istorică",
-        "genres": ["historical", "drama"],
-        "duration": 150
-      }
-    ]
-  }
-  
+  "movies": [
+    {
+      "movieId": 1,
+      "title": "Călătorul în timp",
+      "genres": ["sciFi", "adventure"],
+      "duration": 120,
+      "screens": ["IMAX", "Standard"]
+    },
+    {
+      "movieId": 2,
+      "title": "Escapada romantică",
+      "genres": ["romance", "comedy"],
+      "duration": 105,
+      "screens": ["Standard", "3D"]
+    },
+    {
+      "movieId": 3,
+      "title": "Eroii acțiunii",
+      "genres": ["action", "thriller"],
+      "duration": 130,
+      "screens": ["IMAX", "4DX"]
+    },
+    {
+      "movieId": 4,
+      "title": "Noaptea misterelor",
+      "genres": ["mystery", "drama"],
+      "duration": 115,
+      "screens": ["Standard"]
+    },
+    {
+      "movieId": 5,
+      "title": "Odiseea spațială",
+      "genres": ["sciFi", "adventure"],
+      "duration": 140,
+      "screens": ["IMAX", "Standard", "3D"]
+    },
+    {
+      "movieId": 6,
+      "title": "Expresul terorii",
+      "genres": ["thriller", "horror"],
+      "duration": 110,
+      "screens": ["4DX", "3D"]
+    },
+    {
+      "movieId": 7,
+      "title": "Căutarea fantastică",
+      "genres": ["fantasy", "adventure"],
+      "duration": 125,
+      "screens": ["Standard", "3D"]
+    },
+    {
+      "movieId": 8,
+      "title": "Detectivul",
+      "genres": ["crime", "drama"],
+      "duration": 100,
+      "screens": ["Standard"]
+    },
+    {
+      "movieId": 9,
+      "title": "Întâlnirea extraterestră",
+      "genres": ["sciFi", "horror"],
+      "duration": 95,
+      "screens": ["Standard", "IMAX"]
+    },
+    {
+      "movieId": 10,
+      "title": "Călătoria istorică",
+      "genres": ["historical", "drama"],
+      "duration": 150,
+      "screens": ["4DX", "Standard"]
+    }
+  ]
+}

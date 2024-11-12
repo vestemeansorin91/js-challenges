@@ -7,7 +7,8 @@
   "scripts": {
     "test": "mocha",
     "test:with:browser": "npx mocha --reporter mochawesome",
-    "test:watch": "nodemon --exec 'npx mocha --reporter mochawesome' --watch ./src --watch ./test"
+    "test:watch": "nodemon --exec 'npx mocha --reporter mochawesome' --watch ./src --watch ./test",
+    "prettier:write": "npx prettier ./ --write"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +18,8 @@
     "mocha": "^10.8.2",
     "mochawesome": "^7.1.3",
     "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "prettier": "^3.3.3"
   }
 }
