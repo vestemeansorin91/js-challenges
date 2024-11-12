@@ -64,13 +64,15 @@ const cinemaService = {
   /**
    * Retrieves available seats for a specific movie at a specific time in a specific cinema.
    * @param {number} cinemaId - The ID of the cinema.
+   * @param {number} roomId - The ID of the room.
    * @param {number} movieId - The ID of the movie.
    * @param {string} showtime - The showtime (e.g., "14:00") for the movie.
-   * @returns {string[]} An array of available seat IDs.
+   * @returns {Object.<string, string[]>} An object where each key is a row label (e.g., "A", "B") and the value is an array of seat availability statuses ("OCCUPIED" or "FREE").
    */
-  getAvailableSeats: (cinemaId, movieId, showtime) => {
+  getAvailableSeats: (cinemaId, roomId, movieId, showtime) => {
     /* implementation */
   },
+
   /**
    * Books a specific seat for a specific movie at a specific time in a specific cinema.
    * @param {number} cinemaId - The ID of the cinema.

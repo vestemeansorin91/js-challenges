@@ -16,15 +16,16 @@
             "C": 15,
             "D": 10
           },
-          "occupiedSeats": ["A2", "A3", "B5", "C7", "D1"],
           "movies": [
             {
               "movieId": 1,
-              "startTime": "14:00"
+              "startTime": "14:00",
+              "occupiedSeats": ["A2", "A3", "B5", "C7", "D1"]
             },
             {
               "movieId": 3,
-              "startTime": "17:00"
+              "startTime": "17:00",
+              "occupiedSeats": []
             }
           ]
         },
@@ -37,15 +38,16 @@
             "C": 10,
             "D": 10
           },
-          "occupiedSeats": ["A1", "B2", "C5", "D3"],
           "movies": [
             {
               "movieId": 2,
-              "startTime": "16:00"
+              "startTime": "16:00",
+              "occupiedSeats": ["A1", "B2", "C5", "D3"]
             },
             {
               "movieId": 5,
-              "startTime": "19:30"
+              "startTime": "19:30",
+              "occupiedSeats": []
             }
           ]
         }
@@ -67,15 +69,16 @@
             "C": 10,
             "D": 10
           },
-          "occupiedSeats": ["A1", "B2", "C5", "D3", "D4"],
           "movies": [
             {
               "movieId": 6,
-              "startTime": "12:00"
+              "startTime": "12:00",
+              "occupiedSeats": ["A1", "B2", "C5", "D3", "D4"]
             },
             {
               "movieId": 7,
-              "startTime": "15:00"
+              "startTime": "15:00",
+              "occupiedSeats": []
             }
           ]
         }
@@ -97,15 +100,16 @@
             "C": 15,
             "D": 15
           },
-          "occupiedSeats": ["A1", "A5", "B10", "C3", "D7"],
           "movies": [
             {
               "movieId": 8,
-              "startTime": "11:00"
+              "startTime": "11:00",
+              "occupiedSeats": ["A1", "A5", "B10", "C3", "D7"]
             },
             {
               "movieId": 10,
-              "startTime": "18:00"
+              "startTime": "18:00",
+              "occupiedSeats": []
             }
           ]
         }
