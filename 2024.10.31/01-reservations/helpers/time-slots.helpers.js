@@ -2,7 +2,7 @@ export const startHour = 9;
 export const endHour = 12;
 export const hourRange = 30;
 
-export const doubleDigits = (input) => {
+const doubleDigits = (input) => {
   return input < 10 ? `0${input}` : `${input}`;
 };
 
