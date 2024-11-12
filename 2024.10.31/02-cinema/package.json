@@ -1,0 +1,21 @@
+{
+  "name": "02_shop",
+  "version": "1.0.0",
+  "description": "You can import a file like this in JavaScript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha",
+    "test:with:browser": "npx mocha --reporter mochawesome",
+    "test:watch": "nodemon --exec 'npx mocha --reporter mochawesome' --watch ./src --watch ./test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^5.1.2",
+    "mocha": "^10.8.2",
+    "mochawesome": "^7.1.3",
+    "nodemon": "^3.1.7"
+  }
+}

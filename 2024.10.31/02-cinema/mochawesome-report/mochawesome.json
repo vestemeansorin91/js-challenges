@@ -1,0 +1,1403 @@
+{
+  "stats": {
+    "suites": 24,
+    "tests": 38,
+    "passes": 2,
+    "pending": 0,
+    "failures": 36,
+    "start": "2024-11-05T19:52:21.047Z",
+    "end": "2024-11-05T19:52:21.070Z",
+    "duration": 23,
+    "testsRegistered": 38,
+    "passPercent": 5.263157894736842,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f19e2c71-2d0a-4a8b-ad87-76493769d572",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ab1510b7-bbd8-43f6-bed0-d7da3a4cc95f",
+          "title": "Cinema Service Tests",
+          "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js",
+          "file": "/test/cinema.service.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "c1a4bb95-bf3e-41db-8b64-6d683086f3d2",
+              "title": "findCinemaById(cinemaId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js",
+              "file": "/test/cinema.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return the correct cinema for a valid cinemaId",
+                  "fullTitle": "Cinema Service Tests findCinemaById(cinemaId) should return the correct cinema for a valid cinemaId",
+                  "timedOut": false,
+                  "duration": 1,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const cinema = cinemaService.findCinemaById(1);\nexpect(cinema).to.be.an('object'); \nexpect(cinema).to.have.property('cinemaId', 1);",
+                  "err": {},
+                  "uuid": "aa28bbc6-d7c5-4751-9940-af68055a892c",
+                  "parentUUID": "c1a4bb95-bf3e-41db-8b64-6d683086f3d2",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return null for an invalid cinemaId",
+                  "fullTitle": "Cinema Service Tests findCinemaById(cinemaId) should return null for an invalid cinemaId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const cinema = cinemaService.findCinemaById(999);\nexpect(cinema).to.be.null;",
+                  "err": {},
+                  "uuid": "bce264c1-70de-4adc-9652-9d61745b8c86",
+                  "parentUUID": "c1a4bb95-bf3e-41db-8b64-6d683086f3d2",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "aa28bbc6-d7c5-4751-9940-af68055a892c",
+                "bce264c1-70de-4adc-9652-9d61745b8c86"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 1,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "fca24499-59ad-4ebf-b3c0-dc8c36fbe467",
+              "title": "listCinemasByLocation(location)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js",
+              "file": "/test/cinema.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return an array of cinemas in the specified location",
+                  "fullTitle": "Cinema Service Tests listCinemasByLocation(location) should return an array of cinemas in the specified location",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const cinemas = cinemaService.listCinemasByLocation('Centru');\nexpect(cinemas).to.be.an('array');\ncinemas.forEach(cinema => expect(cinema).to.have.property('location', 'Centru'));",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:21:29)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "9f9363d6-76b4-494c-bea2-b29b61bf057c",
+                  "parentUUID": "fca24499-59ad-4ebf-b3c0-dc8c36fbe467",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array if no cinemas are in the specified location",
+                  "fullTitle": "Cinema Service Tests listCinemasByLocation(location) should return an empty array if no cinemas are in the specified location",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const cinemas = cinemaService.listCinemasByLocation('UnknownLocation');\nexpect(cinemas).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:27:29)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "78159c8a-8c17-4a64-99ce-9d98b9261281",
+                  "parentUUID": "fca24499-59ad-4ebf-b3c0-dc8c36fbe467",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "9f9363d6-76b4-494c-bea2-b29b61bf057c",
+                "78159c8a-8c17-4a64-99ce-9d98b9261281"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "a5ed6120-a1c2-420c-ab16-e558280f7c18",
+              "title": "getCinemaFacilities(cinemaId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js",
+              "file": "/test/cinema.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return an array of facilities for a valid cinemaId",
+                  "fullTitle": "Cinema Service Tests getCinemaFacilities(cinemaId) should return an array of facilities for a valid cinemaId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const facilities = cinemaService.getCinemaFacilities(1);\nexpect(facilities).to.be.an('array');\nexpect(facilities).to.include.members(['parking', 'snacks']);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:34:32)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "02c66580-b3b3-4db1-8f2e-b8c3edf43026",
+                  "parentUUID": "a5ed6120-a1c2-420c-ab16-e558280f7c18",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array for an invalid cinemaId",
+                  "fullTitle": "Cinema Service Tests getCinemaFacilities(cinemaId) should return an empty array for an invalid cinemaId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const facilities = cinemaService.getCinemaFacilities(999);\nexpect(facilities).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:40:32)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "ce4ddb66-f41b-42d8-9c92-e29f051292fe",
+                  "parentUUID": "a5ed6120-a1c2-420c-ab16-e558280f7c18",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "02c66580-b3b3-4db1-8f2e-b8c3edf43026",
+                "ce4ddb66-f41b-42d8-9c92-e29f051292fe"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "d4336cbe-67a8-4275-bd65-db5d0e91f5cf",
+              "title": "getCinemaScreens(cinemaId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js",
+              "file": "/test/cinema.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return an array of screens for a valid cinemaId",
+                  "fullTitle": "Cinema Service Tests getCinemaScreens(cinemaId) should return an array of screens for a valid cinemaId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const screens = cinemaService.getCinemaScreens(1);\nexpect(screens).to.be.an('array');\nexpect(screens).to.include.members(['IMAX', 'Standard']);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:47:29)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "4a7b1ef0-4afa-49d5-b997-72feec7a6dd6",
+                  "parentUUID": "d4336cbe-67a8-4275-bd65-db5d0e91f5cf",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array for an invalid cinemaId",
+                  "fullTitle": "Cinema Service Tests getCinemaScreens(cinemaId) should return an empty array for an invalid cinemaId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const screens = cinemaService.getCinemaScreens(999);\nexpect(screens).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:53:29)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "112d112a-43e5-4cd0-8afe-e92256417580",
+                  "parentUUID": "d4336cbe-67a8-4275-bd65-db5d0e91f5cf",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "4a7b1ef0-4afa-49d5-b997-72feec7a6dd6",
+                "112d112a-43e5-4cd0-8afe-e92256417580"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "d8f46686-fa4e-42a2-ae04-eacb37143179",
+              "title": "getAvailableSeats(cinemaId, movieId, showtime)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js",
+              "file": "/test/cinema.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return an array of available seats for a valid cinema, movie, and showtime",
+                  "fullTitle": "Cinema Service Tests getAvailableSeats(cinemaId, movieId, showtime) should return an array of available seats for a valid cinema, movie, and showtime",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const availableSeats = cinemaService.getAvailableSeats(1, 101, '14:00');\nexpect(availableSeats).to.be.an('array');\navailableSeats.forEach(seat => expect(seat).to.be.a('string'));",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:60:36)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "7a60ec8e-c96d-4c7f-ba30-7f6fb296341f",
+                  "parentUUID": "d8f46686-fa4e-42a2-ae04-eacb37143179",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array if no seats are available for a given showtime",
+                  "fullTitle": "Cinema Service Tests getAvailableSeats(cinemaId, movieId, showtime) should return an empty array if no seats are available for a given showtime",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const availableSeats = cinemaService.getAvailableSeats(1, 101, 'invalidTime');\nexpect(availableSeats).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:66:36)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "71edfed3-d161-4b45-97f7-dbd42752c53c",
+                  "parentUUID": "d8f46686-fa4e-42a2-ae04-eacb37143179",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "7a60ec8e-c96d-4c7f-ba30-7f6fb296341f",
+                "71edfed3-d161-4b45-97f7-dbd42752c53c"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "0eb60071-e7ce-474b-be4b-b05646601bfe",
+              "title": "bookSeat(cinemaId, movieId, showtime, seatId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js",
+              "file": "/test/cinema.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should book the specified seat if it is available",
+                  "fullTitle": "Cinema Service Tests bookSeat(cinemaId, movieId, showtime, seatId) should book the specified seat if it is available",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const seatId = 'A1';\nconst result = cinemaService.bookSeat(1, 101, '14:00', seatId);\nexpect(result).to.be.true;\nconst availableSeats = cinemaService.getAvailableSeats(1, 101, '14:00');\nexpect(availableSeats).to.not.include(seatId);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be true",
+                    "estack": "AssertionError: expected undefined to be true\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:74:27)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "ddb414d8-df20-4a25-a655-b3319a9d4755",
+                  "parentUUID": "0eb60071-e7ce-474b-be4b-b05646601bfe",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return false if the seat is already booked",
+                  "fullTitle": "Cinema Service Tests bookSeat(cinemaId, movieId, showtime, seatId) should return false if the seat is already booked",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const seatId = 'A2';  // Assume A2 is already booked\nconst result = cinemaService.bookSeat(1, 101, '14:00', seatId);\nexpect(result).to.be.false;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be false",
+                    "estack": "AssertionError: expected undefined to be false\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:83:27)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "4fe1f01f-506a-40ba-9155-1515c098de86",
+                  "parentUUID": "0eb60071-e7ce-474b-be4b-b05646601bfe",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "ddb414d8-df20-4a25-a655-b3319a9d4755",
+                "4fe1f01f-506a-40ba-9155-1515c098de86"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "980ae7f4-8948-4d46-ae29-3c5aa2274ba1",
+              "title": "getCinemaCapacity(cinemaId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js",
+              "file": "/test/cinema.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return the correct capacity for a valid cinemaId",
+                  "fullTitle": "Cinema Service Tests getCinemaCapacity(cinemaId) should return the correct capacity for a valid cinemaId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const capacity = cinemaService.getCinemaCapacity(1);\nexpect(capacity).to.be.a('number');\nexpect(capacity).to.equal(50);  // Assume 50 for this test case",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be a number",
+                    "estack": "AssertionError: expected undefined to be a number\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:90:30)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "c8b65e3e-6d55-41a3-a19f-272734cbb3dc",
+                  "parentUUID": "980ae7f4-8948-4d46-ae29-3c5aa2274ba1",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return 0 for an invalid cinemaId",
+                  "fullTitle": "Cinema Service Tests getCinemaCapacity(cinemaId) should return 0 for an invalid cinemaId",
+                  "timedOut": false,
+                  "duration": 1,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const capacity = cinemaService.getCinemaCapacity(999);\nexpect(capacity).to.equal(0);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to equal +0",
+                    "estack": "AssertionError: expected undefined to equal +0\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/cinema.service.test.js:96:27)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "a38de979-dc9f-4f65-9f09-5b304778c8bf",
+                  "parentUUID": "980ae7f4-8948-4d46-ae29-3c5aa2274ba1",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "c8b65e3e-6d55-41a3-a19f-272734cbb3dc",
+                "a38de979-dc9f-4f65-9f09-5b304778c8bf"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 1,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "f61d8769-3023-4bde-862c-4f6f1d953f39",
+          "title": "Facilities Service Tests",
+          "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js",
+          "file": "/test/facilities.service.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "6d97de9a-530e-4542-8531-a836c4b2dd65",
+              "title": "getFacilityLabel(facilityKey)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js",
+              "file": "/test/facilities.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return the correct label for a valid facility key",
+                  "fullTitle": "Facilities Service Tests getFacilityLabel(facilityKey) should return the correct label for a valid facility key",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const label = facilitiesService.getFacilityLabel(\"parking\");\nexpect(label).to.equal(\"Parcare\");",
+                  "err": {
+                    "message": "AssertionError: expected undefined to equal 'Parcare'",
+                    "estack": "AssertionError: expected undefined to equal 'Parcare'\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js:25:24)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "33e6257b-ff82-492b-9c0a-d2482ce4ffb2",
+                  "parentUUID": "6d97de9a-530e-4542-8531-a836c4b2dd65",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return null for an invalid facility key",
+                  "fullTitle": "Facilities Service Tests getFacilityLabel(facilityKey) should return null for an invalid facility key",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const label = facilitiesService.getFacilityLabel(\"invalidKey\");\nexpect(label).to.be.null;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be null",
+                    "estack": "AssertionError: expected undefined to be null\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js:30:26)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "4778e203-aab9-4745-8f63-273ca47792b8",
+                  "parentUUID": "6d97de9a-530e-4542-8531-a836c4b2dd65",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "33e6257b-ff82-492b-9c0a-d2482ce4ffb2",
+                "4778e203-aab9-4745-8f63-273ca47792b8"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "87b075c6-9d1c-4ae5-bfa1-b72e4928b0f3",
+              "title": "listAllFacilities()",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js",
+              "file": "/test/facilities.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return all facilities with correct labels",
+                  "fullTitle": "Facilities Service Tests listAllFacilities() should return all facilities with correct labels",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const facilities = facilitiesService.listAllFacilities();\nexpect(facilities).to.deep.equal(mockFacilities);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to deeply equal { parking: 'Parcare', …(4) }",
+                    "estack": "AssertionError: expected undefined to deeply equal { parking: 'Parcare', …(4) }\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js:37:34)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "450a2b55-478c-4160-ad85-37d46be62e7f",
+                  "parentUUID": "87b075c6-9d1c-4ae5-bfa1-b72e4928b0f3",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "450a2b55-478c-4160-ad85-37d46be62e7f"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "e50a87d1-1857-4621-bfa0-b516db4d14bb",
+              "title": "findCinemasWithFacility(facilityKey)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js",
+              "file": "/test/facilities.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return cinemas with the specified facility",
+                  "fullTitle": "Facilities Service Tests findCinemasWithFacility(facilityKey) should return cinemas with the specified facility",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const cinemasWithParking = facilitiesService.findCinemasWithFacility(\"parking\");\nexpect(cinemasWithParking).to.be.an('array').that.has.lengthOf(3);\nexpect(cinemasWithParking.map(cinema => cinema.cinemaId)).to.include.members([1, 2, 3]);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js:44:40)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "c6f432a3-ccf8-4d1f-8662-2eb483c7c178",
+                  "parentUUID": "e50a87d1-1857-4621-bfa0-b516db4d14bb",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array if no cinemas have the specified facility",
+                  "fullTitle": "Facilities Service Tests findCinemasWithFacility(facilityKey) should return an empty array if no cinemas have the specified facility",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const cinemasWithInvalidFacility = facilitiesService.findCinemasWithFacility(\"nonExistentFacility\");\nexpect(cinemasWithInvalidFacility).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/facilities.service.test.js:50:48)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "9da7123c-fa82-4e80-b525-488fbe376c89",
+                  "parentUUID": "e50a87d1-1857-4621-bfa0-b516db4d14bb",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "c6f432a3-ccf8-4d1f-8662-2eb483c7c178",
+                "9da7123c-fa82-4e80-b525-488fbe376c89"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "493147dd-0c3b-4962-bf51-cdef17a83478",
+          "title": "Genres Service Tests",
+          "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js",
+          "file": "/test/genres.service.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "7df09b67-72dd-4e8d-beae-ddc5826ee37d",
+              "title": "getGenreLabel(genreKey)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js",
+              "file": "/test/genres.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return the correct label for a valid genre key",
+                  "fullTitle": "Genres Service Tests getGenreLabel(genreKey) should return the correct label for a valid genre key",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const label = genresService.getGenreLabel(\"sciFi\");\nexpect(label).to.equal(\"Sci-Fi\");",
+                  "err": {
+                    "message": "AssertionError: expected undefined to equal 'Sci-Fi'",
+                    "estack": "AssertionError: expected undefined to equal 'Sci-Fi'\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js:32:24)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "f0f77245-8294-428d-a17e-e48969566d7d",
+                  "parentUUID": "7df09b67-72dd-4e8d-beae-ddc5826ee37d",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return null for an invalid genre key",
+                  "fullTitle": "Genres Service Tests getGenreLabel(genreKey) should return null for an invalid genre key",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const label = genresService.getGenreLabel(\"invalidKey\");\nexpect(label).to.be.null;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be null",
+                    "estack": "AssertionError: expected undefined to be null\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js:37:26)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "7bf6a2c5-1b29-447e-8dae-500d377179fc",
+                  "parentUUID": "7df09b67-72dd-4e8d-beae-ddc5826ee37d",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "f0f77245-8294-428d-a17e-e48969566d7d",
+                "7bf6a2c5-1b29-447e-8dae-500d377179fc"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "83451922-ab6c-4f28-a568-4a1c8012278b",
+              "title": "listAllGenres()",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js",
+              "file": "/test/genres.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return all genres with correct labels",
+                  "fullTitle": "Genres Service Tests listAllGenres() should return all genres with correct labels",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const genres = genresService.listAllGenres();\nexpect(genres).to.deep.equal(mockGenres);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to deeply equal { sciFi: 'Sci-Fi', …(11) }",
+                    "estack": "AssertionError: expected undefined to deeply equal { sciFi: 'Sci-Fi', …(11) }\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js:44:30)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "80c7c38a-89da-4afc-9759-aed876e9c48c",
+                  "parentUUID": "83451922-ab6c-4f28-a568-4a1c8012278b",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "80c7c38a-89da-4afc-9759-aed876e9c48c"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "8acdd761-ad5b-4403-96b9-1dafb999a6f9",
+              "title": "findMoviesByGenre(genreKey)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js",
+              "file": "/test/genres.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return movies with the specified genre",
+                  "fullTitle": "Genres Service Tests findMoviesByGenre(genreKey) should return movies with the specified genre",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const sciFiMovies = genresService.findMoviesByGenre(\"sciFi\");\nexpect(sciFiMovies).to.be.an('array').that.has.lengthOf(2);\nexpect(sciFiMovies.map(movie => movie.movieId)).to.include.members([1, 5]);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js:51:33)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "ec0e6043-c7c2-493e-9d26-a3d0722197e5",
+                  "parentUUID": "8acdd761-ad5b-4403-96b9-1dafb999a6f9",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array if no movies have the specified genre",
+                  "fullTitle": "Genres Service Tests findMoviesByGenre(genreKey) should return an empty array if no movies have the specified genre",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const moviesWithInvalidGenre = genresService.findMoviesByGenre(\"nonExistentGenre\");\nexpect(moviesWithInvalidGenre).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/genres.service.test.js:57:44)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "9a048489-9643-4b22-ac73-550274c08852",
+                  "parentUUID": "8acdd761-ad5b-4403-96b9-1dafb999a6f9",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "ec0e6043-c7c2-493e-9d26-a3d0722197e5",
+                "9a048489-9643-4b22-ac73-550274c08852"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "97f0d335-0670-49dc-a082-4164265b2679",
+          "title": "Movies Service Tests",
+          "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js",
+          "file": "/test/movies.service.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "9f18e7f2-9cc2-4745-a581-1a088b76145c",
+              "title": "findMovieById(movieId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js",
+              "file": "/test/movies.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return the correct movie for a valid movieId",
+                  "fullTitle": "Movies Service Tests findMovieById(movieId) should return the correct movie for a valid movieId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const movie = moviesService.findMovieById(1);\nexpect(movie).to.be.an('object');\nexpect(movie).to.have.property('movieId', 1);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an object",
+                    "estack": "AssertionError: expected undefined to be an object\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:30:27)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "189506d8-2ed7-45c3-9908-9035f3095eea",
+                  "parentUUID": "9f18e7f2-9cc2-4745-a581-1a088b76145c",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return null for an invalid movieId",
+                  "fullTitle": "Movies Service Tests findMovieById(movieId) should return null for an invalid movieId",
+                  "timedOut": false,
+                  "duration": 1,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const movie = moviesService.findMovieById(999);\nexpect(movie).to.be.null;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be null",
+                    "estack": "AssertionError: expected undefined to be null\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:36:26)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "af7a5543-f92a-41da-88c2-2716fee1c7c7",
+                  "parentUUID": "9f18e7f2-9cc2-4745-a581-1a088b76145c",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "189506d8-2ed7-45c3-9908-9035f3095eea",
+                "af7a5543-f92a-41da-88c2-2716fee1c7c7"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 1,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "54d7b664-d269-4f2b-b30e-f90a6db1f080",
+              "title": "listMoviesByGenre(genreKey)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js",
+              "file": "/test/movies.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return movies with the specified genre",
+                  "fullTitle": "Movies Service Tests listMoviesByGenre(genreKey) should return movies with the specified genre",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const sciFiMovies = moviesService.listMoviesByGenre(\"sciFi\");\nexpect(sciFiMovies).to.be.an('array').that.has.lengthOf(2);\nexpect(sciFiMovies.map(movie => movie.movieId)).to.include.members([1, 5]);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:43:33)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "ea5e8c90-1e19-4cfb-b385-5303da054adc",
+                  "parentUUID": "54d7b664-d269-4f2b-b30e-f90a6db1f080",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array if no movies have the specified genre",
+                  "fullTitle": "Movies Service Tests listMoviesByGenre(genreKey) should return an empty array if no movies have the specified genre",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const noGenreMovies = moviesService.listMoviesByGenre(\"nonExistentGenre\");\nexpect(noGenreMovies).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:49:35)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "12f41b72-13c7-4f23-8042-e5660c99c9c6",
+                  "parentUUID": "54d7b664-d269-4f2b-b30e-f90a6db1f080",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "ea5e8c90-1e19-4cfb-b385-5303da054adc",
+                "12f41b72-13c7-4f23-8042-e5660c99c9c6"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "cd0c0aed-611f-47be-9fe9-24a001bcbc85",
+              "title": "listMoviesByCinema(cinemaId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js",
+              "file": "/test/movies.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return movies available at the specified cinema",
+                  "fullTitle": "Movies Service Tests listMoviesByCinema(cinemaId) should return movies available at the specified cinema",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const movies = moviesService.listMoviesByCinema(1);\nexpect(movies).to.be.an('array').that.has.lengthOf(2);\nexpect(movies.map(movie => movie.movieId)).to.include.members([1, 2]);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:56:28)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "cd101e5c-c705-4009-8893-d79e6631c74b",
+                  "parentUUID": "cd0c0aed-611f-47be-9fe9-24a001bcbc85",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array if no movies are available at the specified cinema",
+                  "fullTitle": "Movies Service Tests listMoviesByCinema(cinemaId) should return an empty array if no movies are available at the specified cinema",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const movies = moviesService.listMoviesByCinema(999);\nexpect(movies).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:62:28)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "d87277d0-e6bb-483e-981e-fb801e2017c6",
+                  "parentUUID": "cd0c0aed-611f-47be-9fe9-24a001bcbc85",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "cd101e5c-c705-4009-8893-d79e6631c74b",
+                "d87277d0-e6bb-483e-981e-fb801e2017c6"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "e885482c-ae5a-461b-b958-33e91f8c7f8d",
+              "title": "getMovieDuration(movieId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js",
+              "file": "/test/movies.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return the correct duration for a valid movieId",
+                  "fullTitle": "Movies Service Tests getMovieDuration(movieId) should return the correct duration for a valid movieId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const duration = moviesService.getMovieDuration(1);\nexpect(duration).to.equal(120);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to equal 120",
+                    "estack": "AssertionError: expected undefined to equal 120\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:69:27)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "970100c6-4d71-4c39-9816-844c7f06f5b5",
+                  "parentUUID": "e885482c-ae5a-461b-b958-33e91f8c7f8d",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return null for an invalid movieId",
+                  "fullTitle": "Movies Service Tests getMovieDuration(movieId) should return null for an invalid movieId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const duration = moviesService.getMovieDuration(999);\nexpect(duration).to.be.null;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be null",
+                    "estack": "AssertionError: expected undefined to be null\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:74:29)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "9c882c68-3da2-4820-9276-307efa003794",
+                  "parentUUID": "e885482c-ae5a-461b-b958-33e91f8c7f8d",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "970100c6-4d71-4c39-9816-844c7f06f5b5",
+                "9c882c68-3da2-4820-9276-307efa003794"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "8558deb4-988b-44e9-af3d-d4970765f961",
+              "title": "listShowtimes(cinemaId, movieId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js",
+              "file": "/test/movies.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return the list of showtimes for a valid cinema and movie",
+                  "fullTitle": "Movies Service Tests listShowtimes(cinemaId, movieId) should return the list of showtimes for a valid cinema and movie",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const showtimes = moviesService.listShowtimes(1, 1);\nexpect(showtimes).to.be.an('array').that.has.lengthOf(2);\nexpect(showtimes).to.include.members([\"14:00\", \"17:00\"]);",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:81:31)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "fdcde178-fe14-4f2e-96e7-ec745e25a54c",
+                  "parentUUID": "8558deb4-988b-44e9-af3d-d4970765f961",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array for an invalid cinema or movie",
+                  "fullTitle": "Movies Service Tests listShowtimes(cinemaId, movieId) should return an empty array for an invalid cinema or movie",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const showtimes = moviesService.listShowtimes(999, 1);\nexpect(showtimes).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:87:31)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "337a5aa3-643e-4dd7-b2f0-3a9829c4d863",
+                  "parentUUID": "8558deb4-988b-44e9-af3d-d4970765f961",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "fdcde178-fe14-4f2e-96e7-ec745e25a54c",
+                "337a5aa3-643e-4dd7-b2f0-3a9829c4d863"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "76cb5a71-dcfb-43d8-a14f-87537e8c78d4",
+              "title": "getMovieGenres(movieId)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js",
+              "file": "/test/movies.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return an array of genres for a valid movieId",
+                  "fullTitle": "Movies Service Tests getMovieGenres(movieId) should return an array of genres for a valid movieId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const genres = moviesService.getMovieGenres(1);\nexpect(genres).to.be.an('array').that.includes(\"sciFi\", \"adventure\");",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:94:28)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "7f2a43fb-1700-4b07-9696-fc9d45da170f",
+                  "parentUUID": "76cb5a71-dcfb-43d8-a14f-87537e8c78d4",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array for an invalid movieId",
+                  "fullTitle": "Movies Service Tests getMovieGenres(movieId) should return an empty array for an invalid movieId",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const genres = moviesService.getMovieGenres(999);\nexpect(genres).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:99:28)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "aac4e065-6d7e-4cb4-857d-a217a51b8b8f",
+                  "parentUUID": "76cb5a71-dcfb-43d8-a14f-87537e8c78d4",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "7f2a43fb-1700-4b07-9696-fc9d45da170f",
+                "aac4e065-6d7e-4cb4-857d-a217a51b8b8f"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "3e65f043-175f-4d6c-8a3b-10abd5388a4d",
+              "title": "getOccupiedSeats(cinemaId, movieId, showtime)",
+              "fullFile": "/Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js",
+              "file": "/test/movies.service.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return an array of occupied seats for a valid cinema, movie, and showtime",
+                  "fullTitle": "Movies Service Tests getOccupiedSeats(cinemaId, movieId, showtime) should return an array of occupied seats for a valid cinema, movie, and showtime",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const occupiedSeats = moviesService.getOccupiedSeats(1, 1, \"14:00\");\nexpect(occupiedSeats).to.be.an('array').that.includes(\"A1\", \"A2\");",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:106:35)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "fa37f778-a2f3-4e95-9f65-b1c1ae39ad31",
+                  "parentUUID": "3e65f043-175f-4d6c-8a3b-10abd5388a4d",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return an empty array if no seats are occupied for the specified showtime",
+                  "fullTitle": "Movies Service Tests getOccupiedSeats(cinemaId, movieId, showtime) should return an empty array if no seats are occupied for the specified showtime",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const occupiedSeats = moviesService.getOccupiedSeats(1, 1, \"invalidTime\");\nexpect(occupiedSeats).to.be.an('array').that.is.empty;",
+                  "err": {
+                    "message": "AssertionError: expected undefined to be an array",
+                    "estack": "AssertionError: expected undefined to be an array\n    at Context.<anonymous> (file:///Users/sorinvestemean/Documents/udemy/learning/js-challenges/2024.10.31/02-cinema/test/movies.service.test.js:111:35)\n    at process.processImmediate (node:internal/timers:483:21)",
+                    "diff": null
+                  },
+                  "uuid": "d1d2a289-276b-4016-adc6-67707a6124f7",
+                  "parentUUID": "3e65f043-175f-4d6c-8a3b-10abd5388a4d",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "fa37f778-a2f3-4e95-9f65-b1c1ae39ad31",
+                "d1d2a289-276b-4016-adc6-67707a6124f7"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
