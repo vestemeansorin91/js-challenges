@@ -16,7 +16,7 @@ import fs from "fs";
 /**
  * @type {Cinema[]}
  */
-const { cinemas } = JSON.parse(fs.readFileSync("../data/cinemas.json", "utf-8"));
+const { cinemas } = JSON.parse(fs.readFileSync("./data/cinemas.json", "utf-8"));
 
 const cinemaService = {
   /**
@@ -41,12 +41,12 @@ const cinemaService = {
    * @returns {string[]} An array of facility names available at the cinema.
    */
   getCinemaFacilities: (cinemaId) => {
-    let selectedCinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
-    if (!selectedCinema) {
+    let cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
       return [];
     }
 
-    return selectedCinema.facilities;
+    return cinema.facilities;
   },
   /**
    * Retrieves the screen types available at a specified cinema.
@@ -54,12 +54,12 @@ const cinemaService = {
    * @returns {string[]} An array of screen types (e.g., "IMAX", "2D") available at the cinema.
    */
   getCinemaScreens: (cinemaId) => {
-    let selectedCinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
-    if (!selectedCinema) {
+    let cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
       return [];
     }
 
-    return selectedCinema.screens;
+    return cinema.screens;
   },
   /**
    * Retrieves available seats for a specific movie at a specific time in a specific cinema.
@@ -70,7 +70,41 @@ const cinemaService = {
    * @returns {Object.<string, string[]>} An object where each key is a row label (e.g., "A", "B") and the value is an array of seat availability statuses ("OCCUPIED" or "FREE").
    */
   getAvailableSeats: (cinemaId, roomId, movieId, showtime) => {
-    /* implementation */
+    const cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return;
+    }
+
+    const room = cinema.rooms.find((room) => room.roomId === roomId);
+    if (!room) {
+      return;
+    }
+
+    const movie = room.movies.find(
+      (movie) => movie.movieId === movieId && movie.startTime === showtime
+    );
+    if (!movie) {
+      return {};
+    }
+
+    const result = {};
+    const keys = Object.keys(room.seatConfiguration);
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      result[key] = [];
+
+      for (let j = 1; j <= room.seatConfiguration[key]; j++) {
+        let seat = key + j;
+        if (movie.occupiedSeats.includes(seat)) {
+          result[key].push("OCCUPIED");
+        } else {
+          result[key].push("FREE");
+        }
+      }
+    }
+
+    return result;
   },
 
   /**
@@ -94,4 +128,5 @@ const cinemaService = {
   },
 };
 
+cinemaService.getAvailableSeats();
 export default cinemaService;

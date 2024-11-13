@@ -20,7 +20,7 @@ describe("Cinema Service Tests", () => {
       const cinemas = cinemaService.listCinemasByLocation("Centru");
       expect(cinemas).to.be.an("array");
       cinemas.forEach((cinema) =>
-        expect(cinema).to.have.property("location", "Centru"),
+        expect(cinema).to.have.property("location", "Centru")
       );
     });
 
@@ -33,7 +33,7 @@ describe("Cinema Service Tests", () => {
       const cinemas = cinemaService.listCinemasByLocation("centru");
       expect(cinemas).to.be.an("array");
       cinemas.forEach((cinema) =>
-        expect(cinema).to.have.property("location", "Centru"),
+        expect(cinema).to.have.property("location", "Centru")
       );
     });
   });
@@ -64,7 +64,7 @@ describe("Cinema Service Tests", () => {
     it("should return an array of screens for a valid cinemaId", () => {
       const screens = cinemaService.getCinemaScreens(1);
       expect(screens).to.be.an("array");
-      expect(screens).to.include.members(["IMAX", "2D"]);
+      expect(screens).to.include.members(["IMAX", "Standard"]);
     });
 
     it("should return an empty array for an invalid cinemaId", () => {
@@ -81,32 +81,46 @@ describe("Cinema Service Tests", () => {
 
   describe("getAvailableSeats(cinemaId, roomId, movieId, showtime)", () => {
     it("should return seat availability in the correct format", () => {
-      const availableSeats = facilitiesService.getAvailableSeats(1, 1, 1, "14:00");
+      const availableSeats = cinemaService.getAvailableSeats(1, 1, 1, "14:00");
       expect(availableSeats).to.be.an("object");
       expect(availableSeats).to.have.all.keys("A", "B", "C", "D");
-      
+
       // Sample checks for seat rows
-      expect(availableSeats.A).to.be.an("array").that.includes.members(["OCCUPIED", "FREE"]);
-      expect(availableSeats.B).to.be.an("array").that.includes.members(["FREE", "OCCUPIED"]);
+      expect(availableSeats.A)
+        .to.be.an("array")
+        .that.includes.members(["OCCUPIED", "FREE"]);
+      expect(availableSeats.B)
+        .to.be.an("array")
+        .that.includes.members(["FREE", "OCCUPIED"]);
     });
-  
+
     it("should return an empty object if no seats are configured for the specified movie and showtime", () => {
-      const availableSeats = facilitiesService.getAvailableSeats(1, 1, 1, "invalidTime");
+      const availableSeats = cinemaService.getAvailableSeats(
+        1,
+        1,
+        1,
+        "invalidTime"
+      );
       expect(availableSeats).to.deep.equal({});
     });
   });
-  
+
   describe("bookSeat(cinemaId, movieId, showtime, seatId)", () => {
     it("should book the specified seat if it is available", () => {
       const seatId = "A1";
       const result = cinemaService.bookSeat(1, 1, 101, "14:00", seatId);
       expect(result).to.be.true;
-      
-      const availableSeats = cinemaService.getAvailableSeats(1, 1, 101, "14:00");
-      
+
+      const availableSeats = cinemaService.getAvailableSeats(
+        1,
+        1,
+        101,
+        "14:00"
+      );
+
       const row = seatId[0];
       const seatIndex = parseInt(seatId.slice(1), 10) - 1;
-      
+
       expect(availableSeats[row][seatIndex]).to.equal("OCCUPIED");
     });
 

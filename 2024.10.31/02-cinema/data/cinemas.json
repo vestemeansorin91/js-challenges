@@ -8,7 +8,7 @@
       "facilities": ["parking", "snacks", "glassesRental3D"],
       "rooms": [
         {
-          "roomId": "Room 1",
+          "roomId": 1,
           "noOfSeats": 50,
           "seatConfiguration": {
             "A": 10,
@@ -23,6 +23,11 @@
               "occupiedSeats": ["A2", "A3", "B5", "C7", "D1"]
             },
             {
+              "movieId": 1,
+              "startTime": "19:00",
+              "occupiedSeats": ["A2", "A3", "B5", "C7", "D1"]
+            },
+            {
               "movieId": 3,
               "startTime": "17:00",
               "occupiedSeats": []
@@ -30,7 +35,7 @@
           ]
         },
         {
-          "roomId": "Room 2",
+          "roomId": 2,
           "noOfSeats": 40,
           "seatConfiguration": {
             "A": 10,
@@ -61,7 +66,7 @@
       "facilities": ["loungeVip", "arcade", "parking"],
       "rooms": [
         {
-          "roomId": "Room 1",
+          "roomId": 1,
           "noOfSeats": 40,
           "seatConfiguration": {
             "A": 10,
@@ -92,7 +97,7 @@
       "facilities": ["snacks", "parking", "loungeVip"],
       "rooms": [
         {
-          "roomId": "Room 1",
+          "roomId": 1,
           "noOfSeats": 60,
           "seatConfiguration": {
             "A": 15,
