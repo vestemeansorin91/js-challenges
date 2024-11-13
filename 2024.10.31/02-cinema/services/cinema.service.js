@@ -124,7 +124,23 @@ const cinemaService = {
    * @returns {number} The total seating capacity of the cinema.
    */
   getCinemaCapacity: (cinemaId) => {
-    /* implementation */
+    const cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return 0;
+    }
+
+    let totalSeats = 0;
+
+    for (let i = 0; i < cinema.rooms.length; i++) {
+      const room = cinema.rooms[i];
+      const seats = Object.values(room.seatConfiguration);
+
+      for (let j = 0; j < seats.length; j++) {
+        totalSeats += seats[j];
+      }
+    }
+
+    return totalSeats;
   },
 };
 

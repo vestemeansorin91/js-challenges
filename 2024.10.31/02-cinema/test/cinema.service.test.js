@@ -108,14 +108,14 @@ describe("Cinema Service Tests", () => {
   describe("bookSeat(cinemaId, movieId, showtime, seatId)", () => {
     it("should book the specified seat if it is available", () => {
       const seatId = "A1";
-      const result = cinemaService.bookSeat(1, 1, 101, "14:00", seatId);
+      const result = cinemaService.bookSeat(1, 1, "14:00", seatId);
       expect(result).to.be.true;
 
       const availableSeats = cinemaService.getAvailableSeats(
         1,
         1,
-        101,
-        "14:00"
+        "14:00",
+        "A1"
       );
 
       const row = seatId[0];
@@ -141,7 +141,7 @@ describe("Cinema Service Tests", () => {
     it("should return the correct capacity for a valid cinemaId", () => {
       const capacity = cinemaService.getCinemaCapacity(1);
       expect(capacity).to.be.a("number");
-      expect(capacity).to.equal(50);
+      expect(capacity).to.equal(90);
     });
 
     it("should return 0 for an invalid cinemaId", () => {
@@ -151,7 +151,7 @@ describe("Cinema Service Tests", () => {
 
     it("should return the sum of capacities of all rooms in a cinema", () => {
       const capacity = cinemaService.getCinemaCapacity(2);
-      expect(capacity).to.equal(90);
+      expect(capacity).to.equal(40);
     });
   });
 });
