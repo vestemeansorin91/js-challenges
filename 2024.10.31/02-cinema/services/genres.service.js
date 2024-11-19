@@ -1,5 +1,5 @@
-import * as genres from '#root/data/genres.json' with { type: 'json' };
-import * as moviesData from '#root/data/movies.json' with { type: 'json' };
+import * as genres from "#root/data/genres.json" with { type: "json" };
+import * as moviesData from "#root/data/movies.json" with { type: "json" };
 
 /**
  * @typedef {Object} Genre

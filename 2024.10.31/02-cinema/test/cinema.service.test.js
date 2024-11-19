@@ -81,7 +81,12 @@ describe("Cinema Service Tests", () => {
 
   describe("getAvailableSeats(cinemaId, roomId, movieId, showtime)", () => {
     it("should return seat availability in the correct format", () => {
-      const availableSeats = cinemaService.getAvailableSeats(1, 1, 1, "14:00");
+      const availableSeats = facilitiesService.getAvailableSeats(
+        1,
+        1,
+        1,
+        "14:00",
+      );
       expect(availableSeats).to.be.an("object");
       expect(availableSeats).to.have.all.keys("A", "B", "C", "D");
 
@@ -95,15 +100,34 @@ describe("Cinema Service Tests", () => {
     });
 
     it("should return an empty object if no seats are configured for the specified movie and showtime", () => {
-      const availableSeats = cinemaService.getAvailableSeats(
+      const availableSeats = facilitiesService.getAvailableSeats(
         1,
         1,
         1,
-        "invalidTime"
+        "invalidTime",
       );
       expect(availableSeats).to.deep.equal({});
     });
   });
+
+  describe("bookSeat(cinemaId, movieId, showtime, seatId)", () => {
+    it("should book the specified seat if it is available", () => {
+      const seatId = "A1";
+      const result = cinemaService.bookSeat(1, 1, 101, "14:00", seatId);
+      expect(result).to.be.true;
+
+      const availableSeats = cinemaService.getAvailableSeats(
+        1,
+        1,
+        101,
+        "14:00",
+      );
+
+      const row = seatId[0];
+      const seatIndex = parseInt(seatId.slice(1), 10) - 1;
+
+      expect(availableSeats[row][seatIndex]).to.equal("OCCUPIED");
+    });
 
   describe("bookSeat(cinemaId, roomId, showtime, seatId)", () => {
     it("should return false if the seat is already booked", () => {
