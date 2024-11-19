@@ -1,3 +1,9 @@
+import fs from "fs";
+
+const facilities = JSON.parse(
+  fs.readFileSync("./data/facilities.json", "utf-8")
+);
+
 /**
  * @typedef {Object} Facility
  * @property {string} key - The unique key identifier for the facility (e.g., "parking").
@@ -10,8 +16,21 @@ const facilitiesService = {
    * @param {string} facilityKey - The key identifier of the facility (e.g., "parking").
    * @returns {string|null} The display label of the facility, or null if not found.
    */
-  getFacilityLabel: (facilityKey) => {
-    /* implementation */
+  getFacilityLabel: (key) => {
+    if (!key) {
+      return null;
+    }
+    let lowerCaseFacilitiesObject = {};
+    for (const facilityKey of Object.keys(facilities)) {
+      lowerCaseFacilitiesObject[facilityKey.toLowerCase()] =
+        facilities[facilityKey];
+    }
+
+    if (!lowerCaseFacilitiesObject[key.toLowerCase()]) {
+      return null;
+    }
+
+    return lowerCaseFacilitiesObject[key.toLowerCase()];
   },
 
   /**

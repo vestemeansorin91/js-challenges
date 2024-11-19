@@ -105,7 +105,7 @@ describe("Cinema Service Tests", () => {
     });
   });
 
-  describe.only("bookSeat(cinemaId, roomId, showtime, seatId)", () => {
+  describe("bookSeat(cinemaId, roomId, showtime, seatId)", () => {
     it("should return false if the seat is already booked", () => {
       const seatId = "A2";
       const result = cinemaService.bookSeat(1, 101, "14:00", seatId);
