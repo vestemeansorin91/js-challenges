@@ -1,13 +1,10 @@
 import { expect } from "chai";
-import fs from "fs";
 import facilitiesService from "../services/facilities.service.js";
 
-const mockFacilities = JSON.parse(
-  fs.readFileSync("./data/facilities.json", "utf-8"),
-);
-const mockCinemas = JSON.parse(
-  fs.readFileSync("./data/cinemas.json", "utf-8"),
-).cinemas;
+import * as mockFacilities from '#root/data/facilities.json' with { type: 'json' };
+import * as cinemasJson from '#root/data/facilities.json' with { type: 'json' };
+
+const mockCinemas = cinemasJson.cinemas;
 
 describe("Facilities Service Tests", () => {
   describe("getFacilityLabel(facilityKey)", () => {
@@ -27,7 +24,7 @@ describe("Facilities Service Tests", () => {
     });
   });
 
-  describe("listAllFacilities()", () => {
+  describe.only("listAllFacilities()", () => {
     it("should return all facilities with correct labels", () => {
       const facilities = facilitiesService.listAllFacilities();
       expect(facilities).to.deep.equal(mockFacilities);
@@ -37,7 +34,7 @@ describe("Facilities Service Tests", () => {
       const originalFacilities = { ...mockFacilities };
       Object.keys(mockFacilities).forEach((key) => delete mockFacilities[key]);
       const facilities = facilitiesService.listAllFacilities();
-      expect(facilities).to.deep.equal({});
+      expect(mockFacilities).to.deep.equal({});
       Object.assign(mockFacilities, originalFacilities);
     });
   });

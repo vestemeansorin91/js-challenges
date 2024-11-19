@@ -1,3 +1,6 @@
+
+import * as facilities from '#root/data/facilities.json' with { type: 'json' };
+
 /**
  * @typedef {Object} Facility
  * @property {string} key - The unique key identifier for the facility (e.g., "parking").
@@ -19,7 +22,7 @@ const facilitiesService = {
    * @returns {Facility[]} An array of facilities with their keys and display labels.
    */
   listAllFacilities: () => {
-    /* implementation */
+    return facilities;
   },
 
   /**
@@ -32,4 +35,6 @@ const facilitiesService = {
   },
 };
 
+
+facilitiesService.getFacilityLabel('parking');
 export default facilitiesService;
