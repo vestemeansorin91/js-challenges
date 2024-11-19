@@ -1,4 +1,4 @@
-import * as cinemasJson from '#root/data/cinemas.json' with { type: 'json' };
+import * as cinemasJson from "#root/data/cinemas.json" with { type: "json" };
 const cinemas = cinemasJson.default.cinemas;
 
 /**

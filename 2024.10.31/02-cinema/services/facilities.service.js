@@ -1,5 +1,4 @@
-
-import * as facilities from '#root/data/facilities.json' with { type: 'json' };
+import * as facilities from "#root/data/facilities.json" with { type: "json" };
 
 /**
  * @typedef {Object} Facility

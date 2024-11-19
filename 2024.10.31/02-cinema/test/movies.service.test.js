@@ -31,7 +31,9 @@ describe("Movies Service Tests", () => {
     it("should return movies with the specified genre", () => {
       const sciFiMovies = moviesService.listMoviesByGenre("sciFi");
       expect(sciFiMovies).to.be.an("array").that.has.lengthOf(2);
-      expect(sciFiMovies.map((movie) => movie.movieId)).to.include.members([1, 5]);
+      expect(sciFiMovies.map((movie) => movie.movieId)).to.include.members([
+        1, 5,
+      ]);
     });
 
     it("should return an empty array if no movies have the specified genre", () => {
@@ -42,7 +44,9 @@ describe("Movies Service Tests", () => {
     it("should handle case insensitivity for genre keys", () => {
       const adventureMovies = moviesService.listMoviesByGenre("Adventure");
       expect(adventureMovies).to.be.an("array").that.has.lengthOf(2);
-      expect(adventureMovies.map((movie) => movie.movieId)).to.include.members([1, 5]);
+      expect(adventureMovies.map((movie) => movie.movieId)).to.include.members([
+        1, 5,
+      ]);
     });
 
     it("should return an empty array if genreKey is undefined", () => {
@@ -56,7 +60,9 @@ describe("Movies Service Tests", () => {
       const movies = moviesService.listMoviesByCinema(1);
       const expectedMovieIds = [1, 3, 2, 5]; // Movies in Cinema 1
       expect(movies).to.be.an("array").that.has.length(expectedMovieIds.length);
-      expect(movies.map((movie) => movie.movieId)).to.include.members(expectedMovieIds);
+      expect(movies.map((movie) => movie.movieId)).to.include.members(
+        expectedMovieIds,
+      );
     });
 
     it("should return an empty array if no movies are available at the specified cinema", () => {
@@ -115,7 +121,9 @@ describe("Movies Service Tests", () => {
   describe("getOccupiedSeats(cinemaId, movieId, showtime)", () => {
     it("should return an array of occupied seats for a valid cinema, movie, and showtime", () => {
       const occupiedSeats = moviesService.getOccupiedSeats(1, 1, "14:00");
-      expect(occupiedSeats).to.be.an("array").that.includes.members(["A2", "A3"]);
+      expect(occupiedSeats)
+        .to.be.an("array")
+        .that.includes.members(["A2", "A3"]);
     });
 
     it("should return an empty array if no seats are occupied for the specified showtime", () => {
