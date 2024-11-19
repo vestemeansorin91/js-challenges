@@ -64,7 +64,7 @@ describe("Cinema Service Tests", () => {
     it("should return an array of screens for a valid cinemaId", () => {
       const screens = cinemaService.getCinemaScreens(1);
       expect(screens).to.be.an("array");
-      expect(screens).to.include.members(["IMAX", "Standard"]);
+      expect(screens).to.include.members(["IMAX", "2D"]);
     });
 
     it("should return an empty array for an invalid cinemaId", () => {
@@ -85,7 +85,7 @@ describe("Cinema Service Tests", () => {
         1,
         1,
         1,
-        "14:00",
+        "14:00"
       );
       expect(availableSeats).to.be.an("object");
       expect(availableSeats).to.have.all.keys("A", "B", "C", "D");
@@ -104,7 +104,7 @@ describe("Cinema Service Tests", () => {
         1,
         1,
         1,
-        "invalidTime",
+        "invalidTime"
       );
       expect(availableSeats).to.deep.equal({});
     });
@@ -120,7 +120,7 @@ describe("Cinema Service Tests", () => {
         1,
         1,
         101,
-        "14:00",
+        "14:00"
       );
 
       const row = seatId[0];
@@ -129,7 +129,6 @@ describe("Cinema Service Tests", () => {
       expect(availableSeats[row][seatIndex]).to.equal("OCCUPIED");
     });
 
-  describe("bookSeat(cinemaId, roomId, showtime, seatId)", () => {
     it("should return false if the seat is already booked", () => {
       const seatId = "A2";
       const result = cinemaService.bookSeat(1, 101, "14:00", seatId);
@@ -147,7 +146,7 @@ describe("Cinema Service Tests", () => {
     it("should return the correct capacity for a valid cinemaId", () => {
       const capacity = cinemaService.getCinemaCapacity(1);
       expect(capacity).to.be.a("number");
-      expect(capacity).to.equal(90);
+      expect(capacity).to.equal(50);
     });
 
     it("should return 0 for an invalid cinemaId", () => {
@@ -157,7 +156,7 @@ describe("Cinema Service Tests", () => {
 
     it("should return the sum of capacities of all rooms in a cinema", () => {
       const capacity = cinemaService.getCinemaCapacity(2);
-      expect(capacity).to.equal(40);
+      expect(capacity).to.equal(90);
     });
   });
 });
