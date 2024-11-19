@@ -2,12 +2,13 @@ import { expect } from "chai";
 import fs from "fs";
 import facilitiesService from "../services/facilities.service.js";
 
-const mockFacilities = JSON.parse(
-  fs.readFileSync("./data/facilities.json", "utf-8"),
+const facilitiesJson = JSON.parse(
+  fs.readFileSync("./data/facilities.json", "utf-8")
 );
-const mockCinemas = JSON.parse(
-  fs.readFileSync("./data/cinemas.json", "utf-8"),
-).cinemas;
+const cinemasJson = JSON.parse(fs.readFileSync("./data/cinemas.json", "utf-8"));
+
+const mockFacilities = facilitiesJson;
+const mockCinemas = cinemasJson.cinemas;
 
 describe("Facilities Service Tests", () => {
   describe("getFacilityLabel(facilityKey)", () => {
@@ -47,13 +48,13 @@ describe("Facilities Service Tests", () => {
       const cinemasWithParking =
         facilitiesService.findCinemasWithFacility("parking");
       const expectedCinemas = mockCinemas.filter((cinema) =>
-        cinema.facilities.includes("parking"),
+        cinema.facilities.includes("parking")
       );
       expect(cinemasWithParking)
         .to.be.an("array")
         .that.has.lengthOf(expectedCinemas.length);
       expect(
-        cinemasWithParking.map((cinema) => cinema.cinemaId),
+        cinemasWithParking.map((cinema) => cinema.cinemaId)
       ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
     });
 
@@ -67,13 +68,13 @@ describe("Facilities Service Tests", () => {
       const cinemasWithArcade =
         facilitiesService.findCinemasWithFacility("Arcade");
       const expectedCinemas = mockCinemas.filter((cinema) =>
-        cinema.facilities.includes("arcade"),
+        cinema.facilities.includes("arcade")
       );
       expect(cinemasWithArcade)
         .to.be.an("array")
         .that.has.lengthOf(expectedCinemas.length);
       expect(
-        cinemasWithArcade.map((cinema) => cinema.cinemaId),
+        cinemasWithArcade.map((cinema) => cinema.cinemaId)
       ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
     });
 
@@ -81,13 +82,13 @@ describe("Facilities Service Tests", () => {
       const cinemasWithSnacks =
         facilitiesService.findCinemasWithFacility("snacks");
       const expectedCinemas = mockCinemas.filter((cinema) =>
-        cinema.facilities.includes("snacks"),
+        cinema.facilities.includes("snacks")
       );
       expect(cinemasWithSnacks)
         .to.be.an("array")
         .that.has.lengthOf(expectedCinemas.length);
       expect(
-        cinemasWithSnacks.map((cinema) => cinema.cinemaId),
+        cinemasWithSnacks.map((cinema) => cinema.cinemaId)
       ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
     });
 

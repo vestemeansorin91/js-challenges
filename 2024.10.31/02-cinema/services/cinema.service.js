@@ -110,13 +110,53 @@ const cinemaService = {
   /**
    * Books a specific seat for a specific movie at a specific time in a specific cinema.
    * @param {number} cinemaId - The ID of the cinema.
-   * @param {number} movieId - The ID of the movie.
+   * @param {number} roomId - The ID of the room.
    * @param {string} showtime - The showtime (e.g., "14:00") for the movie.
    * @param {string} seatId - The ID of the seat to book.
    * @returns {boolean} Returns true if booking was successful, otherwise false.
    */
-  bookSeat: (cinemaId, movieId, showtime, seatId) => {
-    /* implementation */
+  bookSeat: (cinemaId, roomId, showtime, seatId) => {
+    const cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return false;
+    }
+
+    const room = cinema.rooms.find((room) => room.roomId === roomId);
+    if (!room) {
+      return false;
+    }
+
+    const movie = room.movies.find((movie) => movie.startTime === showtime);
+    if (!movie) {
+      return false;
+    }
+
+    const result = {};
+    const keys = Object.keys(room.seatConfiguration);
+
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+      result[key] = [];
+
+      for (let j = 1; j <= room.seatConfiguration[key]; j++) {
+        let seat = key + j;
+        result[key].push(seat);
+      }
+    }
+
+    let isSeatIsAvailable = Object.values(result).some((item) =>
+      item.includes(seatId)
+    );
+    if (!isSeatIsAvailable) {
+      return false;
+    }
+
+    if (movie.occupiedSeats.includes(seatId)) {
+      return false;
+    } else {
+      movie.occupiedSeats.push(seatId);
+      return true;
+    }
   },
   /**
    * Gets the total seating capacity for a specified cinema.

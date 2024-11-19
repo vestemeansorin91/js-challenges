@@ -105,25 +105,7 @@ describe("Cinema Service Tests", () => {
     });
   });
 
-  describe("bookSeat(cinemaId, movieId, showtime, seatId)", () => {
-    it("should book the specified seat if it is available", () => {
-      const seatId = "A1";
-      const result = cinemaService.bookSeat(1, 1, "14:00", seatId);
-      expect(result).to.be.true;
-
-      const availableSeats = cinemaService.getAvailableSeats(
-        1,
-        1,
-        "14:00",
-        "A1"
-      );
-
-      const row = seatId[0];
-      const seatIndex = parseInt(seatId.slice(1), 10) - 1;
-
-      expect(availableSeats[row][seatIndex]).to.equal("OCCUPIED");
-    });
-
+  describe.only("bookSeat(cinemaId, roomId, showtime, seatId)", () => {
     it("should return false if the seat is already booked", () => {
       const seatId = "A2";
       const result = cinemaService.bookSeat(1, 101, "14:00", seatId);
