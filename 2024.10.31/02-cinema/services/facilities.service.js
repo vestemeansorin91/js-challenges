@@ -22,7 +22,7 @@ const facilitiesService = {
    * @returns {Facility[]} An array of facilities with their keys and display labels.
    */
   listAllFacilities: () => {
-    return facilities;
+    /* implementation */
   },
 
   /**
@@ -35,6 +35,4 @@ const facilitiesService = {
   },
 };
 
-
-facilitiesService.getFacilityLabel('parking');
 export default facilitiesService;

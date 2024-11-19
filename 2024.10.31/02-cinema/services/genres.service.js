@@ -1,9 +1,11 @@
+import * as genres from '#root/data/genres.json' with { type: 'json' };
+import * as moviesData from '#root/data/movies.json' with { type: 'json' };
+
 /**
  * @typedef {Object} Genre
  * @property {string} key - The unique key identifier for the genre (e.g., "sciFi").
  * @property {string} label - The display label for the genre (e.g., "Sci-Fi").
  */
-
 const genresService = {
   /**
    * Retrieves the display label for a given genre key.
