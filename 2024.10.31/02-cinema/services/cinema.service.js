@@ -1,5 +1,5 @@
 import * as cinemasJson from '#root/data/cinemas.json' with { type: 'json' };
-const cinemas = cinemasJson.cinemas;
+const cinemas = cinemasJson.default.cinemas;
 
 /**
  * @typedef {Object} Cinema
