@@ -1,4 +1,5 @@
-import fs from "fs";
+import * as cinemasJson from "#root/data/cinemas.json" with { type: "json" };
+const cinemas = cinemasJson.cinemas;
 
 /**
  * @typedef {Object} Cinema
@@ -16,7 +17,6 @@ import fs from "fs";
 /**
  * @type {Cinema[]}
  */
-const { cinemas } = JSON.parse(fs.readFileSync("./data/cinemas.json", "utf-8"));
 
 const cinemaService = {
   /**

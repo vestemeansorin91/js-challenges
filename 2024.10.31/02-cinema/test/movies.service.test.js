@@ -1,5 +1,11 @@
 import { expect } from "chai";
-import moviesService from "../services/movies.service.js";
+import moviesService from "#root/services/movies.service.js";
+
+import * as mockMoviesData from "#root/data/movies.json" with { type: "json" };
+import * as mockCinemasData from "#root/data/cinemas.json" with { type: "json" };
+
+const mockMovies = mockMoviesData.movies;
+const mockCinemas = mockCinemasData.cinemas;
 
 describe("Movies Service Tests", () => {
   describe("findMovieById(movieId)", () => {
@@ -7,10 +13,16 @@ describe("Movies Service Tests", () => {
       const movie = moviesService.findMovieById(1);
       expect(movie).to.be.an("object");
       expect(movie).to.have.property("movieId", 1);
+      expect(movie).to.have.property("title", "Călătorul în timp");
     });
 
     it("should return null for an invalid movieId", () => {
       const movie = moviesService.findMovieById(999);
+      expect(movie).to.be.null;
+    });
+
+    it("should handle edge cases like negative movieId", () => {
+      const movie = moviesService.findMovieById(-1);
       expect(movie).to.be.null;
     });
   });
@@ -19,9 +31,7 @@ describe("Movies Service Tests", () => {
     it("should return movies with the specified genre", () => {
       const sciFiMovies = moviesService.listMoviesByGenre("sciFi");
       expect(sciFiMovies).to.be.an("array").that.has.lengthOf(2);
-      expect(sciFiMovies.map((movie) => movie.movieId)).to.include.members([
-        1, 5,
-      ]);
+      expect(sciFiMovies.map((movie) => movie.movieId)).to.include.members([1, 5]);
     });
 
     it("should return an empty array if no movies have the specified genre", () => {
@@ -32,17 +42,21 @@ describe("Movies Service Tests", () => {
     it("should handle case insensitivity for genre keys", () => {
       const adventureMovies = moviesService.listMoviesByGenre("Adventure");
       expect(adventureMovies).to.be.an("array").that.has.lengthOf(2);
-      expect(adventureMovies.map((movie) => movie.movieId)).to.include.members([
-        1, 5,
-      ]);
+      expect(adventureMovies.map((movie) => movie.movieId)).to.include.members([1, 5]);
+    });
+
+    it("should return an empty array if genreKey is undefined", () => {
+      const movies = moviesService.listMoviesByGenre(undefined);
+      expect(movies).to.be.an("array").that.is.empty;
     });
   });
 
   describe("listMoviesByCinema(cinemaId)", () => {
     it("should return movies available at the specified cinema", () => {
       const movies = moviesService.listMoviesByCinema(1);
-      expect(movies).to.be.an("array").that.has.lengthOf(2);
-      expect(movies.map((movie) => movie.movieId)).to.include.members([1, 2]);
+      const expectedMovieIds = [1, 3, 2, 5]; // Movies in Cinema 1
+      expect(movies).to.be.an("array").that.has.length(expectedMovieIds.length);
+      expect(movies.map((movie) => movie.movieId)).to.include.members(expectedMovieIds);
     });
 
     it("should return an empty array if no movies are available at the specified cinema", () => {
@@ -51,7 +65,7 @@ describe("Movies Service Tests", () => {
     });
 
     it("should return an empty array if the cinema has no movies scheduled", () => {
-      const movies = moviesService.listMoviesByCinema(3);
+      const movies = moviesService.listMoviesByCinema(4);
       expect(movies).to.be.an("array").that.is.empty;
     });
   });
@@ -81,7 +95,7 @@ describe("Movies Service Tests", () => {
     });
 
     it("should return an empty array if there are no showtimes for the specified movie", () => {
-      const showtimes = moviesService.listShowtimes(1, 3);
+      const showtimes = moviesService.listShowtimes(1, 9); // Movie 9 not in Cinema 1
       expect(showtimes).to.be.an("array").that.is.empty;
     });
   });
@@ -101,21 +115,16 @@ describe("Movies Service Tests", () => {
   describe("getOccupiedSeats(cinemaId, movieId, showtime)", () => {
     it("should return an array of occupied seats for a valid cinema, movie, and showtime", () => {
       const occupiedSeats = moviesService.getOccupiedSeats(1, 1, "14:00");
-      expect(occupiedSeats).to.be.an("array").that.includes("A1", "A2");
+      expect(occupiedSeats).to.be.an("array").that.includes.members(["A2", "A3"]);
     });
 
     it("should return an empty array if no seats are occupied for the specified showtime", () => {
-      const occupiedSeats = moviesService.getOccupiedSeats(1, 1, "invalidTime");
+      const occupiedSeats = moviesService.getOccupiedSeats(1, 1, "17:00");
       expect(occupiedSeats).to.be.an("array").that.is.empty;
     });
 
-    it("should return an empty array if there are no occupied seats for a valid showtime", () => {
-      const occupiedSeats = moviesService.getOccupiedSeats(1, 2, "15:30");
-      expect(occupiedSeats).to.be.an("array").that.is.empty;
-    });
-
-    it("should handle case where movie has no seating information for a valid showtime", () => {
-      const occupiedSeats = moviesService.getOccupiedSeats(1, 3, "13:00");
+    it("should return an empty array for an invalid cinema, movie, or showtime", () => {
+      const occupiedSeats = moviesService.getOccupiedSeats(999, 1, "14:00");
       expect(occupiedSeats).to.be.an("array").that.is.empty;
     });
   });

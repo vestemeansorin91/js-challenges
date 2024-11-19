@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import cinemaService from "../services/cinema.service.js";
+import cinemaService from "#root/services/cinema.service.js";
 
 describe("Cinema Service Tests", () => {
   describe("findCinemaById(cinemaId)", () => {

@@ -1,8 +1,4 @@
-import fs from "fs";
-
-const facilities = JSON.parse(
-  fs.readFileSync("./data/facilities.json", "utf-8")
-);
+import * as facilities from "#root/data/facilities.json" with { type: "json" };
 
 /**
  * @typedef {Object} Facility

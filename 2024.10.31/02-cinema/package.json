@@ -4,6 +4,9 @@
   "description": "You can import a file like this in JavaScript",
   "main": "index.js",
   "type": "module",
+  "imports": {
+    "#root/*": "./*"
+  },
   "scripts": {
     "test": "mocha",
     "test:with:browser": "npx mocha --reporter mochawesome",

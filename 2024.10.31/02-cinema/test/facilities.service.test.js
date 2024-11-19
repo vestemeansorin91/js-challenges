@@ -1,13 +1,9 @@
 import { expect } from "chai";
-import fs from "fs";
 import facilitiesService from "../services/facilities.service.js";
 
-const facilitiesJson = JSON.parse(
-  fs.readFileSync("./data/facilities.json", "utf-8")
-);
-const cinemasJson = JSON.parse(fs.readFileSync("./data/cinemas.json", "utf-8"));
+import * as mockFacilities from "#root/data/facilities.json" with { type: "json" };
+import * as cinemasJson from "#root/data/cinemas.json" with { type: "json" };
 
-const mockFacilities = facilitiesJson;
 const mockCinemas = cinemasJson.cinemas;
 
 describe("Facilities Service Tests", () => {
@@ -26,12 +22,15 @@ describe("Facilities Service Tests", () => {
       const label = facilitiesService.getFacilityLabel("Parking");
       expect(label).to.equal(mockFacilities.parking);
     });
-  });
 
-  describe.only("listAllFacilities()", () => {
-    it("should return all facilities with correct labels", () => {
-      const facilities = facilitiesService.listAllFacilities();
-      expect(facilities).to.deep.equal(mockFacilities);
+    it("should return null if facility key is undefined", () => {
+      const label = facilitiesService.getFacilityLabel(undefined);
+      expect(label).to.be.null;
+    });
+
+    it("should return null if facility key is null", () => {
+      const label = facilitiesService.getFacilityLabel(null);
+      expect(label).to.be.null;
     });
   });
 
@@ -91,6 +90,34 @@ describe("Facilities Service Tests", () => {
         facilitiesService.findCinemasWithFacility("parking");
       expect(cinemasWithParking).to.be.an("array").that.is.empty;
       Object.assign(mockCinemas, originalMockCinemas);
+    });
+
+    it("should return an empty array if facility key is undefined", () => {
+      const cinemas = facilitiesService.findCinemasWithFacility(undefined);
+      expect(cinemas).to.be.an("array").that.is.empty;
+    });
+
+    it("should return an empty array if facility key is null", () => {
+      const cinemas = facilitiesService.findCinemasWithFacility(null);
+      expect(cinemas).to.be.an("array").that.is.empty;
+    });
+  });
+
+  describe("listAllFacilities()", () => {
+    it("should return all available facilities", () => {
+      const facilitiesList = facilitiesService.listAllFacilities();
+      const expectedFacilities = Object.entries(mockFacilities).map(
+        ([key, label]) => ({ key, label })
+      );
+      expect(facilitiesList).to.deep.equal(expectedFacilities);
+    });
+
+    it("should return an empty array if facilities data is missing", () => {
+      const originalFacilities = JSON.parse(JSON.stringify(mockFacilities));
+      Object.keys(mockFacilities).forEach((key) => delete mockFacilities[key]);
+      const facilitiesList = facilitiesService.listAllFacilities();
+      expect(facilitiesList).to.be.an("array").that.is.empty;
+      Object.assign(mockFacilities, originalFacilities);
     });
   });
 });
