@@ -38,7 +38,15 @@ const facilitiesService = {
    * @returns {Facility[]} An array of facilities with their keys and display labels.
    */
   listAllFacilities: () => {
-    /* implementation */
+    const result = [];
+    for (const key of Object.keys(facilities)) {
+      result.push({
+        key: key,
+        label: facilities[key],
+      });
+    }
+
+    return facilities;
   },
 
   /**
@@ -51,4 +59,5 @@ const facilitiesService = {
   },
 };
 
+facilitiesService.listAllFacilities();
 export default facilitiesService;
