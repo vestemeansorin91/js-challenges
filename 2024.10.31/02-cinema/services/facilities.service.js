@@ -1,4 +1,10 @@
 import * as facilities from "#root/data/facilities.json" with { type: "json" };
+import * as cinemasJson from "#root/data/cinemas.json" with { type: "json" };
+
+const mockCinemas = cinemasJson.default.cinemas;
+const mockFacilities = facilities.default;
+
+console.log(facilities.default);
 
 /**
  * @typedef {Object} Facility
@@ -17,9 +23,9 @@ const facilitiesService = {
       return null;
     }
     let lowerCaseFacilitiesObject = {};
-    for (const facilityKey of Object.keys(facilities)) {
+    for (const facilityKey of Object.keys(mockFacilities)) {
       lowerCaseFacilitiesObject[facilityKey.toLowerCase()] =
-        facilities[facilityKey];
+        mockFacilities[facilityKey];
     }
 
     if (!lowerCaseFacilitiesObject[key.toLowerCase()]) {
@@ -35,14 +41,14 @@ const facilitiesService = {
    */
   listAllFacilities: () => {
     const result = [];
-    for (const key of Object.keys(facilities)) {
+    for (const key of Object.keys(mockFacilities)) {
       result.push({
         key: key,
-        label: facilities[key],
+        label: mockFacilities[key],
       });
     }
 
-    return facilities;
+    return result;
   },
 
   /**
@@ -51,9 +57,13 @@ const facilitiesService = {
    * @returns {Object[]} An array of cinema objects that include the specified facility.
    */
   findCinemasWithFacility: (facilityKey) => {
-    /* implementation */
+    const lowerCaseFacility = facilityKey.toLowerCase();
+    return mockCinemas.filter((cinema) =>
+      cinema.facilities.some(
+        (facility) => facility.toLowerCase() === lowerCaseFacility
+      )
+    );
   },
 };
 
-facilitiesService.listAllFacilities();
 export default facilitiesService;
