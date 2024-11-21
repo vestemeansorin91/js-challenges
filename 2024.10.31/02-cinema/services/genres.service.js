@@ -2,7 +2,7 @@ import * as genres from "#root/data/genres.json" with { type: "json" };
 import * as moviesData from "#root/data/movies.json" with { type: "json" };
 
 const mockGenres = genres.default;
-const mockMoviesData = moviesData.default.movies;
+const mockMovies = moviesData.default.movies;
 
 console.log(mockGenres);
 /**
@@ -54,7 +54,10 @@ const genresService = {
    * @returns {Object[]} An array of movie objects that match the specified genre.
    */
   findMoviesByGenre: (genreKey) => {
-    /* implementation */
+    const lowerCaseGenre = genreKey.toLowerCase();
+    return mockMovies.filter((movie) =>
+      movie.genres.some((genre) => genre.toLowerCase() === lowerCaseGenre)
+    );
   },
 };
 
