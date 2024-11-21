@@ -6,7 +6,7 @@ import * as mockMoviesData from "#root/data/movies.json" with { type: "json" };
 const mockMovies = mockMoviesData.movies;
 
 describe("Genres Service Tests", () => {
-  describe("getGenreLabel(genreKey)", () => {
+  describe.only("getGenreLabel(genreKey)", () => {
     it("should return the correct label for a valid genre key", () => {
       const label = genresService.getGenreLabel("sciFi");
       expect(label).to.equal(mockGenres.sciFi);
@@ -56,13 +56,13 @@ describe("Genres Service Tests", () => {
     it("should return movies with the specified genre", () => {
       const sciFiMovies = genresService.findMoviesByGenre("sciFi");
       const expectedMovies = mockMovies.filter((movie) =>
-        movie.genres.includes("sciFi"),
+        movie.genres.includes("sciFi")
       );
       expect(sciFiMovies)
         .to.be.an("array")
         .that.has.lengthOf(expectedMovies.length);
       expect(sciFiMovies.map((movie) => movie.movieId)).to.include.members(
-        expectedMovies.map((movie) => movie.movieId),
+        expectedMovies.map((movie) => movie.movieId)
       );
     });
 
@@ -75,26 +75,26 @@ describe("Genres Service Tests", () => {
     it("should handle case insensitivity for genre keys", () => {
       const adventureMovies = genresService.findMoviesByGenre("Adventure");
       const expectedMovies = mockMovies.filter((movie) =>
-        movie.genres.includes("adventure"),
+        movie.genres.includes("adventure")
       );
       expect(adventureMovies)
         .to.be.an("array")
         .that.has.lengthOf(expectedMovies.length);
       expect(adventureMovies.map((movie) => movie.movieId)).to.include.members(
-        expectedMovies.map((movie) => movie.movieId),
+        expectedMovies.map((movie) => movie.movieId)
       );
     });
 
     it("should return multiple movies when genre is shared among them", () => {
       const adventureMovies = genresService.findMoviesByGenre("adventure");
       const expectedMovies = mockMovies.filter((movie) =>
-        movie.genres.includes("adventure"),
+        movie.genres.includes("adventure")
       );
       expect(adventureMovies)
         .to.be.an("array")
         .that.has.lengthOf(expectedMovies.length);
       expect(adventureMovies.map((movie) => movie.movieId)).to.include.members(
-        expectedMovies.map((movie) => movie.movieId),
+        expectedMovies.map((movie) => movie.movieId)
       );
     });
 

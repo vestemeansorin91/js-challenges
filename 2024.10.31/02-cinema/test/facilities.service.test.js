@@ -103,7 +103,7 @@ describe("Facilities Service Tests", () => {
     });
   });
 
-  describe.only("listAllFacilities()", () => {
+  describe("listAllFacilities()", () => {
     it("should return all available facilities", () => {
       const facilitiesList = facilitiesService.listAllFacilities();
       const expectedFacilities = Object.entries(mockFacilities).map(
