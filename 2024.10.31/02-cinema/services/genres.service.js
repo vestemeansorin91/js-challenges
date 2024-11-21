@@ -37,7 +37,15 @@ const genresService = {
    * @returns {Genre[]} An array of genres with their keys and display labels.
    */
   listAllGenres: () => {
-    /* implementation */
+    const result = [];
+    for (const key of Object.keys(mockGenres)) {
+      result.push({
+        key: key,
+        label: mockGenres[key],
+      });
+    }
+
+    return result;
   },
 
   /**
