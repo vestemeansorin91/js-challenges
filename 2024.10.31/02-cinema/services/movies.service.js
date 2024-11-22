@@ -126,7 +126,12 @@ const moviesService = {
    * @returns {string[]} An array of genre keys associated with the movie.
    */
   getMovieGenres: (movieId) => {
-    /* implementation */
+    const movie = mockMovies.find((movie) => movie.movieId === movieId);
+    if (!movie) {
+      return [];
+    }
+
+    return movie.genres;
   },
 
   /**
