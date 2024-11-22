@@ -100,7 +100,24 @@ const moviesService = {
    * @returns {string[]} An array of showtimes in "HH:MM" format.
    */
   listShowtimes: (cinemaId, movieId) => {
-    /* implementation */
+    const cinema = mockCinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return [];
+    }
+
+    const movies = [];
+    for (let i = 0; i < cinema.rooms.length; i++) {
+      const room = cinema.rooms[i];
+
+      for (let j = 0; j < room.movies.length; j++) {
+        const movie = room.movies[j];
+        if (movie.movieId === movieId) {
+          movies.push(movie.startTime);
+        }
+      }
+    }
+
+    return movies;
   },
 
   /**
@@ -123,7 +140,5 @@ const moviesService = {
     /* implementation */
   },
 };
-
-console.log(moviesService.listMoviesByCinema(1));
 
 export default moviesService;
