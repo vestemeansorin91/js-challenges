@@ -53,7 +53,14 @@ const moviesService = {
    * @returns {number|null} The duration of the movie in minutes, or null if not found.
    */
   getMovieDuration: (movieId) => {
-    /* implementation */
+    if (!movieId) {
+      return null;
+    }
+    const movie = mockMovies.find((movie) => movie.movieId === movieId);
+    if (!movie) {
+      return null;
+    }
+    return movie.duration;
   },
 
   /**
