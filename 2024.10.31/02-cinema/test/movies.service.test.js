@@ -30,9 +30,9 @@ describe("Movies Service Tests", () => {
   describe("listMoviesByGenre(genreKey)", () => {
     it("should return movies with the specified genre", () => {
       const sciFiMovies = moviesService.listMoviesByGenre("sciFi");
-      expect(sciFiMovies).to.be.an("array").that.has.lengthOf(2);
+      expect(sciFiMovies).to.be.an("array").that.has.lengthOf(3);
       expect(sciFiMovies.map((movie) => movie.movieId)).to.include.members([
-        1, 5,
+        1, 5, 9,
       ]);
     });
 
@@ -43,9 +43,9 @@ describe("Movies Service Tests", () => {
 
     it("should handle case insensitivity for genre keys", () => {
       const adventureMovies = moviesService.listMoviesByGenre("Adventure");
-      expect(adventureMovies).to.be.an("array").that.has.lengthOf(2);
+      expect(adventureMovies).to.be.an("array").that.has.lengthOf(3);
       expect(adventureMovies.map((movie) => movie.movieId)).to.include.members([
-        1, 5,
+        1, 5, 7,
       ]);
     });
 
@@ -61,7 +61,7 @@ describe("Movies Service Tests", () => {
       const expectedMovieIds = [1, 3, 2, 5]; // Movies in Cinema 1
       expect(movies).to.be.an("array").that.has.length(expectedMovieIds.length);
       expect(movies.map((movie) => movie.movieId)).to.include.members(
-        expectedMovieIds,
+        expectedMovieIds
       );
     });
 
