@@ -29,7 +29,13 @@ const moviesService = {
    * @returns {Movie[]} An array of movie objects that match the specified genre.
    */
   listMoviesByGenre: (genreKey) => {
-    /* implementation */
+    if (!genreKey) {
+      return [];
+    }
+    const lowerCase = genreKey.toLowerCase();
+    return mockMovies.filter((movie) =>
+      movie.genres.some((genre) => genre.toLowerCase() === lowerCase)
+    );
   },
 
   /**
