@@ -4,8 +4,6 @@ import * as cinemasJson from "#root/data/cinemas.json" with { type: "json" };
 const mockCinemas = cinemasJson.default.cinemas;
 const mockFacilities = facilities.default;
 
-console.log(facilities.default);
-
 /**
  * @typedef {Object} Facility
  * @property {string} key - The unique key identifier for the facility (e.g., "parking").

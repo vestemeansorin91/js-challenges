@@ -44,7 +44,37 @@ const moviesService = {
    * @returns {Movie[]} An array of movie objects available at the specified cinema.
    */
   listMoviesByCinema: (cinemaId) => {
-    /* implementation */
+    const cinema = mockCinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return [];
+    }
+
+    const movies = [];
+    for (let i = 0; i < cinema.rooms.length; i++) {
+      const room = cinema.rooms[i];
+
+      for (let j = 0; j < room.movies.length; j++) {
+        const movie = room.movies[j];
+
+        const movieObject = mockMovies.find(
+          (item) => item.movieId === movie.movieId
+        );
+
+        if (!movieObject) {
+          continue;
+        }
+        const movieExist = movies.find(
+          (movie) => movie.movieId === movieObject.movieId
+        );
+
+        if (movieExist) {
+          continue;
+        }
+        movies.push(movieObject);
+      }
+    }
+
+    return movies;
   },
 
   /**
@@ -93,5 +123,7 @@ const moviesService = {
     /* implementation */
   },
 };
+
+console.log(moviesService.listMoviesByCinema(1));
 
 export default moviesService;

@@ -4,7 +4,6 @@ import * as moviesData from "#root/data/movies.json" with { type: "json" };
 const mockGenres = genres.default;
 const mockMovies = moviesData.default.movies;
 
-console.log(mockGenres);
 /**
  * @typedef {Object} Genre
  * @property {string} key - The unique key identifier for the genre (e.g., "sciFi").
