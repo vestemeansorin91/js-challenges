@@ -6,7 +6,7 @@ import * as mockMoviesData from "#root/data/movies.json" with { type: "json" };
 const mockMovies = mockMoviesData.movies;
 
 describe("Genres Service Tests", () => {
-  describe.only("getGenreLabel(genreKey)", () => {
+  describe("getGenreLabel(genreKey)", () => {
     it("should return the correct label for a valid genre key", () => {
       const label = genresService.getGenreLabel("sciFi");
       expect(label).to.equal(mockGenres.sciFi);

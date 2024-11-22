@@ -1,3 +1,9 @@
+import * as moviesData from "#root/data/movies.json" with { type: "json" };
+import * as cinemasJson from "#root/data/cinemas.json" with { type: "json" };
+
+const mockMovies = moviesData.default.movies;
+const mockCinemas = cinemasJson.default.cinemas;
+
 /**
  * @typedef {Object} Movie
  * @property {number} movieId - The unique identifier for the movie.
@@ -13,7 +19,8 @@ const moviesService = {
    * @returns {Movie|null} The movie object if found, otherwise null.
    */
   findMovieById: (movieId) => {
-    /* implementation */
+    const movie = mockMovies.find((movie) => movie.movieId === movieId) || null;
+    return movie;
   },
 
   /**
