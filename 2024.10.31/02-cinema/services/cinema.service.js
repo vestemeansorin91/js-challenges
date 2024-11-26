@@ -41,12 +41,12 @@ const cinemaService = {
    * @returns {string[]} An array of facility names available at the cinema.
    */
   getCinemaFacilities: (cinemaId) => {
-    let selectedCinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
-    if (!selectedCinema) {
+    let cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
       return [];
     }
 
-    return selectedCinema.facilities;
+    return cinema.facilities;
   },
   /**
    * Retrieves the screen types available at a specified cinema.
@@ -54,12 +54,12 @@ const cinemaService = {
    * @returns {string[]} An array of screen types (e.g., "IMAX", "2D") available at the cinema.
    */
   getCinemaScreens: (cinemaId) => {
-    let selectedCinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
-    if (!selectedCinema) {
+    let cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
       return [];
     }
 
-    return selectedCinema.screens;
+    return cinema.screens;
   },
   /**
    * Retrieves available seats for a specific movie at a specific time in a specific cinema.
@@ -70,19 +70,93 @@ const cinemaService = {
    * @returns {Object.<string, string[]>} An object where each key is a row label (e.g., "A", "B") and the value is an array of seat availability statuses ("OCCUPIED" or "FREE").
    */
   getAvailableSeats: (cinemaId, roomId, movieId, showtime) => {
-    /* implementation */
+    const cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return;
+    }
+
+    const room = cinema.rooms.find((room) => room.roomId === roomId);
+    if (!room) {
+      return;
+    }
+
+    const movie = room.movies.find(
+      (movie) => movie.movieId === movieId && movie.startTime === showtime
+    );
+    if (!movie) {
+      return {};
+    }
+
+    const result = {};
+    const keys = Object.keys(room.seatConfiguration);
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      result[key] = [];
+
+      for (let j = 1; j <= room.seatConfiguration[key]; j++) {
+        let seat = key + j;
+        if (movie.occupiedSeats.includes(seat)) {
+          result[key].push("OCCUPIED");
+        } else {
+          result[key].push("FREE");
+        }
+      }
+    }
+
+    return result;
   },
 
   /**
    * Books a specific seat for a specific movie at a specific time in a specific cinema.
    * @param {number} cinemaId - The ID of the cinema.
-   * @param {number} movieId - The ID of the movie.
+   * @param {number} roomId - The ID of the room.
    * @param {string} showtime - The showtime (e.g., "14:00") for the movie.
    * @param {string} seatId - The ID of the seat to book.
    * @returns {boolean} Returns true if booking was successful, otherwise false.
    */
-  bookSeat: (cinemaId, movieId, showtime, seatId) => {
-    /* implementation */
+  bookSeat: (cinemaId, roomId, showtime, seatId) => {
+    const cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return false;
+    }
+
+    const room = cinema.rooms.find((room) => room.roomId === roomId);
+    if (!room) {
+      return false;
+    }
+
+    const movie = room.movies.find((movie) => movie.startTime === showtime);
+    if (!movie) {
+      return false;
+    }
+
+    const result = {};
+    const keys = Object.keys(room.seatConfiguration);
+
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+      result[key] = [];
+
+      for (let j = 1; j <= room.seatConfiguration[key]; j++) {
+        let seat = key + j;
+        result[key].push(seat);
+      }
+    }
+
+    let isSeatIsAvailable = Object.values(result).some((item) =>
+      item.includes(seatId)
+    );
+    if (!isSeatIsAvailable) {
+      return false;
+    }
+
+    if (movie.occupiedSeats.includes(seatId)) {
+      return false;
+    } else {
+      movie.occupiedSeats.push(seatId);
+      return true;
+    }
   },
   /**
    * Gets the total seating capacity for a specified cinema.
@@ -90,8 +164,25 @@ const cinemaService = {
    * @returns {number} The total seating capacity of the cinema.
    */
   getCinemaCapacity: (cinemaId) => {
-    /* implementation */
+    const cinema = cinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return 0;
+    }
+
+    let totalSeats = 0;
+
+    for (let i = 0; i < cinema.rooms.length; i++) {
+      const room = cinema.rooms[i];
+      const seats = Object.values(room.seatConfiguration);
+
+      for (let j = 0; j < seats.length; j++) {
+        totalSeats += seats[j];
+      }
+    }
+
+    return totalSeats;
   },
 };
 
+cinemaService.getAvailableSeats();
 export default cinemaService;

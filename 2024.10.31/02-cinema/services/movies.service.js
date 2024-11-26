@@ -1,3 +1,9 @@
+import * as moviesData from "#root/data/movies.json" with { type: "json" };
+import * as cinemasJson from "#root/data/cinemas.json" with { type: "json" };
+
+const mockMovies = moviesData.default.movies;
+const mockCinemas = cinemasJson.default.cinemas;
+
 /**
  * @typedef {Object} Movie
  * @property {number} movieId - The unique identifier for the movie.
@@ -13,7 +19,8 @@ const moviesService = {
    * @returns {Movie|null} The movie object if found, otherwise null.
    */
   findMovieById: (movieId) => {
-    /* implementation */
+    const movie = mockMovies.find((movie) => movie.movieId === movieId) || null;
+    return movie;
   },
 
   /**
@@ -22,7 +29,13 @@ const moviesService = {
    * @returns {Movie[]} An array of movie objects that match the specified genre.
    */
   listMoviesByGenre: (genreKey) => {
-    /* implementation */
+    if (!genreKey) {
+      return [];
+    }
+    const lowerCase = genreKey.toLowerCase();
+    return mockMovies.filter((movie) =>
+      movie.genres.some((genre) => genre.toLowerCase() === lowerCase)
+    );
   },
 
   /**
@@ -31,7 +44,37 @@ const moviesService = {
    * @returns {Movie[]} An array of movie objects available at the specified cinema.
    */
   listMoviesByCinema: (cinemaId) => {
-    /* implementation */
+    const cinema = mockCinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return [];
+    }
+
+    const movies = [];
+    for (let i = 0; i < cinema.rooms.length; i++) {
+      const room = cinema.rooms[i];
+
+      for (let j = 0; j < room.movies.length; j++) {
+        const movie = room.movies[j];
+
+        const movieObject = mockMovies.find(
+          (item) => item.movieId === movie.movieId
+        );
+
+        if (!movieObject) {
+          continue;
+        }
+        const movieExist = movies.find(
+          (movie) => movie.movieId === movieObject.movieId
+        );
+
+        if (movieExist) {
+          continue;
+        }
+        movies.push(movieObject);
+      }
+    }
+
+    return movies;
   },
 
   /**
@@ -40,7 +83,14 @@ const moviesService = {
    * @returns {number|null} The duration of the movie in minutes, or null if not found.
    */
   getMovieDuration: (movieId) => {
-    /* implementation */
+    if (!movieId) {
+      return null;
+    }
+    const movie = mockMovies.find((movie) => movie.movieId === movieId);
+    if (!movie) {
+      return null;
+    }
+    return movie.duration;
   },
 
   /**
@@ -50,7 +100,24 @@ const moviesService = {
    * @returns {string[]} An array of showtimes in "HH:MM" format.
    */
   listShowtimes: (cinemaId, movieId) => {
-    /* implementation */
+    const cinema = mockCinemas.find((cinema) => cinema.cinemaId === cinemaId);
+    if (!cinema) {
+      return [];
+    }
+
+    const movies = [];
+    for (let i = 0; i < cinema.rooms.length; i++) {
+      const room = cinema.rooms[i];
+
+      for (let j = 0; j < room.movies.length; j++) {
+        const movie = room.movies[j];
+        if (movie.movieId === movieId) {
+          movies.push(movie.startTime);
+        }
+      }
+    }
+
+    return movies;
   },
 
   /**
@@ -59,7 +126,12 @@ const moviesService = {
    * @returns {string[]} An array of genre keys associated with the movie.
    */
   getMovieGenres: (movieId) => {
-    /* implementation */
+    const movie = mockMovies.find((movie) => movie.movieId === movieId);
+    if (!movie) {
+      return [];
+    }
+
+    return movie.genres;
   },
 
   /**

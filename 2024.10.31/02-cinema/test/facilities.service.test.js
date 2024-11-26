@@ -39,13 +39,13 @@ describe("Facilities Service Tests", () => {
       const cinemasWithParking =
         facilitiesService.findCinemasWithFacility("parking");
       const expectedCinemas = mockCinemas.filter((cinema) =>
-        cinema.facilities.includes("parking"),
+        cinema.facilities.includes("parking")
       );
       expect(cinemasWithParking)
         .to.be.an("array")
         .that.has.lengthOf(expectedCinemas.length);
       expect(
-        cinemasWithParking.map((cinema) => cinema.cinemaId),
+        cinemasWithParking.map((cinema) => cinema.cinemaId)
       ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
     });
 
@@ -59,13 +59,13 @@ describe("Facilities Service Tests", () => {
       const cinemasWithArcade =
         facilitiesService.findCinemasWithFacility("Arcade");
       const expectedCinemas = mockCinemas.filter((cinema) =>
-        cinema.facilities.includes("arcade"),
+        cinema.facilities.includes("arcade")
       );
       expect(cinemasWithArcade)
         .to.be.an("array")
         .that.has.lengthOf(expectedCinemas.length);
       expect(
-        cinemasWithArcade.map((cinema) => cinema.cinemaId),
+        cinemasWithArcade.map((cinema) => cinema.cinemaId)
       ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
     });
 
@@ -73,13 +73,13 @@ describe("Facilities Service Tests", () => {
       const cinemasWithSnacks =
         facilitiesService.findCinemasWithFacility("snacks");
       const expectedCinemas = mockCinemas.filter((cinema) =>
-        cinema.facilities.includes("snacks"),
+        cinema.facilities.includes("snacks")
       );
       expect(cinemasWithSnacks)
         .to.be.an("array")
         .that.has.lengthOf(expectedCinemas.length);
       expect(
-        cinemasWithSnacks.map((cinema) => cinema.cinemaId),
+        cinemasWithSnacks.map((cinema) => cinema.cinemaId)
       ).to.include.members(expectedCinemas.map((cinema) => cinema.cinemaId));
     });
 
@@ -107,7 +107,7 @@ describe("Facilities Service Tests", () => {
     it("should return all available facilities", () => {
       const facilitiesList = facilitiesService.listAllFacilities();
       const expectedFacilities = Object.entries(mockFacilities).map(
-        ([key, label]) => ({ key, label }),
+        ([key, label]) => ({ key, label })
       );
       expect(facilitiesList).to.deep.equal(expectedFacilities);
     });

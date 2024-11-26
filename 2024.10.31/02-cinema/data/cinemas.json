@@ -8,7 +8,7 @@
       "facilities": ["parking", "snacks", "glassesRental3D"],
       "rooms": [
         {
-          "roomId": "Room 1",
+          "roomId": 1,
           "noOfSeats": 50,
           "seatConfiguration": {
             "A": 10,
@@ -23,6 +23,11 @@
               "occupiedSeats": ["A2", "A3", "B5", "C7", "D1"]
             },
             {
+              "movieId": 1,
+              "startTime": "19:00",
+              "occupiedSeats": ["A2", "A3", "B5", "C7", "D1"]
+            },
+            {
               "movieId": 3,
               "startTime": "17:00",
               "occupiedSeats": []
@@ -30,7 +35,7 @@
           ]
         },
         {
-          "roomId": "Room 2",
+          "roomId": 2,
           "noOfSeats": 40,
           "seatConfiguration": {
             "A": 10,
@@ -43,6 +48,11 @@
               "movieId": 2,
               "startTime": "16:00",
               "occupiedSeats": ["A1", "B2", "C5", "D3"]
+            },
+            {
+              "movieId": 2,
+              "startTime": "19:00",
+              "occupiedSeats": ["A5", "A6", "B8", "C4", "D5"]
             },
             {
               "movieId": 5,
@@ -61,7 +71,7 @@
       "facilities": ["loungeVip", "arcade", "parking"],
       "rooms": [
         {
-          "roomId": "Room 1",
+          "roomId": 1,
           "noOfSeats": 40,
           "seatConfiguration": {
             "A": 10,
@@ -74,6 +84,11 @@
               "movieId": 6,
               "startTime": "12:00",
               "occupiedSeats": ["A1", "B2", "C5", "D3", "D4"]
+            },
+            {
+              "movieId": 6,
+              "startTime": "12:00",
+              "occupiedSeats": ["A3", "B2", "C7", "B7", "D7", "C3", "A7", "D4"]
             },
             {
               "movieId": 7,
@@ -92,7 +107,7 @@
       "facilities": ["snacks", "parking", "loungeVip"],
       "rooms": [
         {
-          "roomId": "Room 1",
+          "roomId": 1,
           "noOfSeats": 60,
           "seatConfiguration": {
             "A": 15,
@@ -110,6 +125,28 @@
               "movieId": 10,
               "startTime": "18:00",
               "occupiedSeats": []
+            }
+          ]
+        },
+        {
+          "roomId": 2,
+          "noOfSeats": 55,
+          "seatConfiguration": {
+            "A": 25,
+            "B": 15,
+            "C": 10,
+            "D": 15
+          },
+          "movies": [
+            {
+              "movieId": 8,
+              "startTime": "11:00",
+              "occupiedSeats": ["A1", "A5", "B10", "C3", "D7"]
+            },
+            {
+              "movieId": 10,
+              "startTime": "18:00",
+              "occupiedSeats": ["A1", "A4", "B2", "C3", "D6"]
             }
           ]
         }

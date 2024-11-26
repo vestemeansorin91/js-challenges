@@ -1,6 +1,9 @@
 import * as genres from "#root/data/genres.json" with { type: "json" };
 import * as moviesData from "#root/data/movies.json" with { type: "json" };
 
+const mockGenres = genres.default;
+const mockMovies = moviesData.default.movies;
+
 /**
  * @typedef {Object} Genre
  * @property {string} key - The unique key identifier for the genre (e.g., "sciFi").
@@ -12,8 +15,20 @@ const genresService = {
    * @param {string} genreKey - The key identifier of the genre (e.g., "sciFi").
    * @returns {string|null} The display label of the genre, or null if not found.
    */
-  getGenreLabel: (genreKey) => {
-    /* implementation */
+  getGenreLabel: (key) => {
+    if (!key) {
+      return null;
+    }
+    let lowerCaseGenresObject = {};
+    for (const genreKey of Object.keys(mockGenres)) {
+      lowerCaseGenresObject[genreKey.toLowerCase()] = mockGenres[genreKey];
+    }
+
+    if (!lowerCaseGenresObject[key.toLowerCase()]) {
+      return null;
+    }
+
+    return lowerCaseGenresObject[key.toLowerCase()];
   },
 
   /**
@@ -21,7 +36,15 @@ const genresService = {
    * @returns {Genre[]} An array of genres with their keys and display labels.
    */
   listAllGenres: () => {
-    /* implementation */
+    const result = [];
+    for (const key of Object.keys(mockGenres)) {
+      result.push({
+        key: key,
+        label: mockGenres[key],
+      });
+    }
+
+    return result;
   },
 
   /**
@@ -30,7 +53,10 @@ const genresService = {
    * @returns {Object[]} An array of movie objects that match the specified genre.
    */
   findMoviesByGenre: (genreKey) => {
-    /* implementation */
+    const lowerCaseGenre = genreKey.toLowerCase();
+    return mockMovies.filter((movie) =>
+      movie.genres.some((genre) => genre.toLowerCase() === lowerCaseGenre)
+    );
   },
 };
 
